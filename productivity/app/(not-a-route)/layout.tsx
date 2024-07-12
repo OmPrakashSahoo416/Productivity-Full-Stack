@@ -9,7 +9,7 @@ function NewLayout(
 
   return (
     <>
-      <div className="bg-rose-200">
+      <div className="bg-rose-200 text-center p-2">
         This is a navbar
         
 
