@@ -2,7 +2,7 @@
 export default function Home() {
   return (
     <>
-    <div className="text-slate-600 w-full text-center">
+    <div className="text-slate-800 w-full text-center">
       Hello World!
     </div>
     </>
