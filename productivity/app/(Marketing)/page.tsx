@@ -20,9 +20,9 @@ function MarketingPage() {
       <NavBar></NavBar>
 
       {/* Body Text  */}
-      <div className="marketingPage mt-16 h-full bg-gradient-to-b from-purple-500 flex justify-center items-center p-8 flex-col to-fuchsia-500">
+      <div className="marketingPage h-full bg-gradient-to-b from-purple-500 flex justify-center items-center p-8 flex-col to-fuchsia-500">
         <div className={"marketingHeading mt-5 text-center max-w-sm md:max-w-xl text-2xl md:text-4xl text-slate-200 " + HeadingFont.className}>
-          Trello makes it easier for teams to manage projects and tasks
+          Trello makes it easier for teams to manage projects and tasks.
         </div>
 
         <div className="marketingDesc mt-5 text-sm md:text-lg max-w-md md:max-w-2xl text-fuchsia-200 text-center ">
@@ -32,7 +32,7 @@ function MarketingPage() {
         </div>
 
         <Button  className="mt-5 drop-shadow-md" size={"lg"} asChild>
-        <Link href={"/dashboard"}>
+        <Link href={"/sign-up"}>
         Sign up - it's free
         </Link>
 

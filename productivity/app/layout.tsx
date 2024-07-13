@@ -5,6 +5,7 @@ import { ConfigObject } from "@/config/config";
 
 const inter = Inter({ subsets: ["latin"] });
 
+
 export const metadata: Metadata = {
   title: {
     default: ConfigObject.name,
@@ -15,7 +16,7 @@ export const metadata: Metadata = {
     
     {
       url:"/logo.png",
-      
+
       href:"/logo.png",
       
       
