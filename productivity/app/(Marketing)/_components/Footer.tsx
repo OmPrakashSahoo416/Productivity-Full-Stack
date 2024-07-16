@@ -5,7 +5,7 @@ import Link from "next/link";
 export const Footer = () => {
   return (
     <>
-      <div className="marketingFooter fixed w-full  border-t shadow-sm bottom-0 p-1 bg-gradient-to-b from-purple-100 to-fuchsia-200 ">
+      <div className="marketingFooter fixed w-full  border-t shadow-sm bottom-0 p-1 bg-neutral-100 ">
         <div className="marketingFooterLinks w-full flex justify-between  items-center md:max-w-screen-xl  md:w-auto mx-auto">
           <Logo></Logo>
 

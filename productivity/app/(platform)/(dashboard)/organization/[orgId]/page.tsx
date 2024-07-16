@@ -1,4 +1,4 @@
-import { ClerkProvider, OrganizationSwitcher } from "@clerk/nextjs"
+// import { ClerkProvider, OrganizationSwitcher } from "@clerk/nextjs"
 import { auth } from "@clerk/nextjs/server"
 
 
@@ -11,10 +11,7 @@ export default function OrganizationPage () {
   return (
 
     <>
-      <ClerkProvider>
-        <OrganizationSwitcher />
-      </ClerkProvider>
-      <div>Organization Id : {organizationId}</div>
+      {/* <div>Organization Id : {organizationId}</div> */}
 </>
 
   )
