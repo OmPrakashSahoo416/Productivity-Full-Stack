@@ -15,7 +15,7 @@ export default function Navbar () {
       
       <div className="navLeft flex space-x-4 items-center">
       <Logo></Logo>
-      <Button size={"sm"} className="font-sm px-2 py-2 hidden md:block">Create</Button>
+      <Button size={"sm"} variant={"primary"} className="font-sm px-2 py-1 hidden md:block">Create</Button>
       <PlusCircle className="md:hidden"></PlusCircle>
 
       </div>

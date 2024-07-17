@@ -10,7 +10,7 @@ export const NavBar = () => {
           <Logo></Logo>
 
           <div className="marketingButtons flex justify-between md:block items-center w-full md:w-auto space-x-4">
-            <Button asChild size={"sm"} variant={"secondary"}>
+            <Button asChild size={"sm"} variant={"outline"}>
               <Link href={"/sign-up"}>Sign up</Link>
             </Button>
             <Button asChild size={"sm"}>
