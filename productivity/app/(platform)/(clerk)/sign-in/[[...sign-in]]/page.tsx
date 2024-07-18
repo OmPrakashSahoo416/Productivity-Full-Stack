@@ -4,11 +4,13 @@ import { auth } from "@clerk/nextjs/server";
 
 export default  function Page() {
     const org = auth().orgId;
-  return (<ClerkProvider >
+  return (
+  // <ClerkProvider >
     
 
     <SignIn fallbackRedirectUrl={org ? `organization/${org}` : "/select-org"} />
     
     
-    </ClerkProvider>);
+    // </ClerkProvider>
+  );
 }

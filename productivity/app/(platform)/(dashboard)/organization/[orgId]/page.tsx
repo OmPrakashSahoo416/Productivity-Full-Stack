@@ -11,8 +11,8 @@ export default function OrganizationPage () {
   return (
 
     <>
-      {/* <div>Organization Id : {organizationId}</div> */}
-</>
+      <div>Organization Id : {organizationId}</div>
+    </>
 
   )
 }
