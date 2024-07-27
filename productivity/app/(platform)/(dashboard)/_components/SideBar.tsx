@@ -46,10 +46,12 @@ function SideBar() {
           <SquareKanban className="mr-2"></SquareKanban>
           <p>Boards</p>
         </Button>
+        <Link href={"/"}>
         <Button variant={"ghost"} size={"left"} className="mb-2">
           <House className="mr-2" />
           <p>Home</p>
         </Button>
+        </Link>
         <hr />
         <Link href={"/select-org"}>
           <Button
