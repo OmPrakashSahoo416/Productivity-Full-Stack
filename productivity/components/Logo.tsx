@@ -17,7 +17,7 @@ function Logo() {
     <Link href={"/"}>
     <div className="logo hover:opacity-60 transition justify-start md:items-center md:flex space-x-2 hidden">
       
-      <Image className="rounded-sm" src="/logo.png" alt="logo" width={30} height={30}>
+      <Image className="rounded-sm" src="/logo.png" alt="logo" width={20} height={20}>
       </Image>
       <div className={cn("logoText text-neutral-900 font-medium", textFont.className )}>
         Trello
