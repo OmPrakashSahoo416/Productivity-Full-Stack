@@ -42,12 +42,12 @@ function SideBar() {
     <>
       <div className="sideBar max-w-md flex p-2 flex-col lg:max-w-screen-lg">
         {/* nav and home buttons */}
-        <Button variant={"ghost"} size={"left"} className="mb-2">
+        <Button variant={"ghost"} size={"left"} className="mb-2 w-full">
           <SquareKanban className="mr-2"></SquareKanban>
           <p>Boards</p>
         </Button>
         <Link href={"/"}>
-        <Button variant={"ghost"} size={"left"} className="mb-2">
+        <Button variant={"ghost"} size={"left"} className="mb-2 w-full">
           <House className="mr-2" />
           <p>Home</p>
         </Button>
@@ -59,13 +59,13 @@ function SideBar() {
             size={"sm"}
             className=" flex justify-between"
           >
-            <p className="text-[12px] font-bold text-slate-700">Organization</p>
-            <Plus size={"15px"} className="ml-28"></Plus>
+            <p className="text-[12px] font-bold text-rose-600">Organization</p>
+            <Plus size={"15px"} className="ml-28 text-rose-600"></Plus>
           </Button>
         </Link>
         <Accordion type="multiple"  className="ml-4 text-sm">
           {userMemberships.data?.map((org) => {
-            console.log(org.organization.imageUrl)
+            // console.log(org.organization.imageUrl)
             
             return (
               <AccordionItem value={org.organization.name} key={org.id} title={org.organization.name}> 

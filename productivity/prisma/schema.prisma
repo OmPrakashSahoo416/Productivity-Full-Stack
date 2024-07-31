@@ -23,8 +23,8 @@ model User {
 }
 model Board {
   id            String       @default(cuid()) @id
-  name          String?
-  email         String?   @unique
+  title          String?
+  theme         String?   @unique
   @@map(name: "boards")
 }
 
