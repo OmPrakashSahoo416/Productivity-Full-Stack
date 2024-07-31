@@ -31,7 +31,7 @@ function MarketingPage() {
           done.
         </div>
 
-        <Button  className="mt-5 drop-shadow-md" size={"lg"} asChild>
+        <Button variant={"primary"}  className="mt-5 drop-shadow-md" size={"lg"} asChild>
         <Link href={"/sign-up"}>
         Sign up - it's free
         </Link>
