@@ -2,6 +2,9 @@
 
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 import { CircleHelp } from "lucide-react"
+import NewBoardDialog from "./newBoardDialog"
+
+
 
 export default function BoardList() {
   
@@ -10,12 +13,14 @@ export default function BoardList() {
     <>
     <div className="boardList">
       <div className="newBoard">
-        <div role="button" className="newBoardBox flex space-y-1 flex-col items-center justify-center w-[200px] h-[100px] bg-rose-50 rounded-sm">
+      <NewBoardDialog>
+        <div role="button"  className="newBoardBox flex space-y-1 flex-col items-center justify-center w-[200px] h-[100px] bg-rose-50 rounded-sm">
 
           <p className="text-slate-700 font-medium text-sm">Create new board</p>
           <p className="text-slate-600 font-normal text-xs">5 remaining</p>
 
         </div>
+        </NewBoardDialog>
         <div className="relative top-[-20px] left-[180px]">
 
         <TooltipProvider>
@@ -29,6 +34,7 @@ export default function BoardList() {
         </div>
 
         
+      
       </div>
     </div>
     

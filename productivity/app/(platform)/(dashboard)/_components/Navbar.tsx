@@ -1,8 +1,10 @@
+
 import Logo from "@/components/Logo"
 import { UserButton, ClerkProvider, OrganizationSwitcher } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 import { auth } from "@clerk/nextjs/server";
+import NewBoardDialog from "../organization/[orgId]/_components/newBoardDialog";
 
 
 export default function Navbar () {
@@ -17,8 +19,10 @@ export default function Navbar () {
       
       <div className="navLeft flex space-x-4 items-center">
       <Logo></Logo>
-      <Button size={"sm"} variant={"primary"} className="text-[12px] rounded-sm font-medium px-3 py-2 hidden md:block">+ Create</Button>
-      <Button variant={"primary"} size={"sm"} className="md:hidden rounded-full w-9 h-9"><Plus ></Plus></Button>
+      <NewBoardDialog>
+      <div role="button" className="text-[12px]  bg-rose-600 hover:bg-rose-800 text-slate-100 rounded-sm font-medium px-3 py-2 hidden md:block">+ Create</div>
+      <div role="button"  className="md:hidden bg-rose-600 hover:bg-rose-800 text-slate-100  rounded-full w-9 h-9 flex justify-center items-center"><Plus ></Plus></div>
+      </NewBoardDialog>
 
       </div>
 
