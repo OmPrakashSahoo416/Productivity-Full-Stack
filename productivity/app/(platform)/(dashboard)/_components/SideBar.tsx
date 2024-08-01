@@ -42,17 +42,12 @@ function SideBar() {
     <>
       <div className="sideBar max-w-md flex p-2 flex-col lg:max-w-screen-lg">
         {/* nav and home buttons */}
-        <Link href={"/"}>
-        <Button variant={"ghost"} size={"left"} className="mb-2 w-full">
-          <SquareKanban className="mr-2"></SquareKanban>
-          <p>Boards</p>
-        </Button>
-        </Link>
-        
+        <Link href={"/home"}>
         <Button variant={"ghost"} size={"left"} className="mb-2 w-full">
           <House className="mr-2" />
           <p>Home</p>
         </Button>
+        </Link>
         
         <hr />
         <Link href={"/select-org"}>
@@ -76,7 +71,7 @@ function SideBar() {
                 <AccordionContent className="flex flex-col">
 
                   
-              <a href={`/organization/${org.organization.id}/board`}>
+              <a href={`/organization/${org.organization.id}/`}>
 
                   <Button  variant={"ghost"} size={"left"} className="mb-2 w-full focus:bg-slate-300"><SquareKanban size={"20px"} className="mr-2"></SquareKanban>Boards</Button>
 

@@ -17,8 +17,8 @@ export default function Navbar () {
       
       <div className="navLeft flex space-x-4 items-center">
       <Logo></Logo>
-      <Button size={"sm"} variant={"primary"} className="text-[12px] rounded-sm font-normal px-2 py-1 hidden md:block">Create</Button>
-      <Button variant={"primary"} size={"sm"} className="md:hidden"><Plus ></Plus></Button>
+      <Button size={"sm"} variant={"primary"} className="text-[12px] rounded-sm font-medium px-3 py-2 hidden md:block">+ Create</Button>
+      <Button variant={"primary"} size={"sm"} className="md:hidden rounded-full w-9 h-9"><Plus ></Plus></Button>
 
       </div>
 

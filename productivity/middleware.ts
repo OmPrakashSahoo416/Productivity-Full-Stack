@@ -12,7 +12,7 @@ export default clerkMiddleware((auth,req) => {
     let path = "select-org";
 
     if (auth().orgId) {
-      path = `organization/${auth().orgId}`;
+      path = `organization/${auth().orgId}/board`;
     }
 
     const redirectUrl = new URL(path, landingUrl);
