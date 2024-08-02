@@ -1,4 +1,5 @@
 import { createApi } from "unsplash-js";
+import { Basic } from "unsplash-js/dist/methods/photos/types";
 
 const unsplash = createApi({
   accessKey: process.env.NEXT_PUBLIC_UNSPLASH_ACCESS_KEY!,
@@ -6,7 +7,7 @@ const unsplash = createApi({
 });
 
 export async function GetImages() {
-  let images: string[] = [];
+  let images:Basic[] | undefined = [];
 
   try {
     const response = await unsplash.search.getPhotos({
@@ -18,13 +19,13 @@ export async function GetImages() {
     });
     // console.log(response)
     const imagesArr = response.response?.results;
-    imagesArr?.map((image) => {
+    // imagesArr?.map((image) => {
       // console.log(imagesArr)
-      images.push(image.urls.full.toString());
-    });
+      images = imagesArr;
+    // });
   } catch (error) {}
 
-  console.log(images);
+  // console.log(images);
 
   return images;
 }

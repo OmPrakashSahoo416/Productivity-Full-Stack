@@ -15,6 +15,7 @@ import { CreateBoard } from "@/actions/create-board";
 import { toast } from "@/components/ui/use-toast";
 import { GetImages } from "@/lib/unsplash";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function NewBoardDialog({
   children,
@@ -23,13 +24,24 @@ export default function NewBoardDialog({
 }) {
   const [images, setImages] = useState<Array<string>>([]);
   const [boardBg, setBoardBg] = useState<string>("");
+  const [imageAuthor, setImageAuthor] = useState<Array<string>>([]);
 
   const fetch = async () => {
     try {
+      const bg_images_temp:string[] = []
+      const bg_authors_temp:string[] = []
       const responseImages = await GetImages();
+      // console.log(responseImages)
       if (responseImages) {
-        console.log(responseImages)
-        setImages(responseImages)
+        // console.log(responseImages)
+        
+        responseImages.map((image) => {
+          bg_images_temp.push(image.urls.thumb.toString())
+          bg_authors_temp.push(image.user.links.html.toString())
+        })
+        setImages(bg_images_temp)
+        setImageAuthor(bg_authors_temp)
+        // setImages(responseImages)
       } else {
         console.error("Error fetching from unsplash");
       }
@@ -70,18 +82,20 @@ export default function NewBoardDialog({
                 <div className="bg-slate-200 w-1/5 h-[100px] rounded-sm z-10"></div>
               </div>
               
-            <Image className="hover:opacity-75 rounded-sm object-cover" fill src={boardBg}  alt={boardBg} ></Image>
+            <Image className="hover:opacity-75 rounded-sm object-cover" fill src={boardBg == ""?images[0]?.toString():boardBg}  alt={boardBg} ></Image>
+            
 
             </div>
           </DialogHeader>
           <div className="unsplashPreview flex flex-col space-y-2 mb-2 items-start ">
             <p className="text-xs font-medium text-slate-700">Background</p>
             <div className="flex items-center space-x-2 ">
-              {images.map(image => {
+              {images.map((image,index) => {
                 return (
-                  <div className="w-[60px] relative h-[40px]  rounded-sm " >
+                  <div className="w-[60px] group overflow-hidden relative h-[40px]  rounded-sm " >
                     <button onClick={() => setBoardBg(image.toString())} >
                     <Image className="hover:opacity-75 rounded-sm" fill src={image.toString()}  alt={image.toString()} ></Image>
+                    <Link href={imageAuthor[index]} className="hidden bg-slate-100/40 underline rounded-sm -bottom-5  relative text-xs truncate overflow-hidden text-slate-800 group-hover:flex" target="_blank">{imageAuthor[index]}</Link>
                     </button>
                   </div>
 
