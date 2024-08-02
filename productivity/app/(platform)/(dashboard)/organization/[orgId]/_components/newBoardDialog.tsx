@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -9,53 +10,87 @@ import {
   DialogClose,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
-import { ReactNode } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { CreateBoard } from "@/actions/create-board";
 import { toast } from "@/components/ui/use-toast";
-import axios from "axios"
+import { GetImages } from "@/lib/unsplash";
+import Image from "next/image";
+
+export default function NewBoardDialog({
+  children,
+}: {
+  children: ReactNode;
+}) {
+  const [images, setImages] = useState<Array<string>>([]);
+  const [boardBg, setBoardBg] = useState<string>("");
+
+  const fetch = async () => {
+    try {
+      const responseImages = await GetImages();
+      if (responseImages) {
+        console.log(responseImages)
+        setImages(responseImages)
+      } else {
+        console.error("Error fetching from unsplash");
+      }
+
+      
+    } catch (error) {
+      console.error(error)
+      
+    }
 
 
-const images:string[] = []
-export async function getUnsplashImages() {
-  const accesskey = process.env.NEXT_PUBLIC_UNSPLASH_ACCESS_KEY!
-  const unsplashroot = process.env.NEXT_PUBLIC_UNSPLASH_ROOT!
-  console.log(accesskey)
-
-
-  try {
-    
-    const data = await axios.get(`${unsplashroot}/search/photos?query=background&client_id=${accesskey}&page=1&per_page=2`)
-    console.log(data)
-    // data.data.results.map((res) => {
-    //   images.push(res.urls.full.toString())
-    // })
-  } catch (error) {
-    console.error(error)
-    
   }
-}
 
-export default function NewBoardDialog({ children }: { children: ReactNode }) {
-  
-  // testing the unsplash api 
-  // getUnsplashImages()
-  console.log(images)
-  
+  useEffect(() => {
+
+    fetch()
+  }, [])
 
   
-
+    
+    
+  
 
   return (
     <>
       <Dialog>
         <DialogTrigger>{children}</DialogTrigger>
-        <DialogContent className="space-y-2">
+        <DialogContent className="space-y-2 ">
           <DialogHeader className="flex flex-col items-center space-y-2">
             <DialogTitle className="text-sm font-medium text-center text-slate-700">
               Create board
+              
             </DialogTitle>
-            <div className="boardPreview space-y-1 flex-col items-center justify-center w-[250px] h-[150px] bg-rose-50 rounded-sm"></div>
+            <div className="boardPreview relative  flex-col items-center justify-center w-[250px] h-[150px] bg-rose-50 rounded-sm">
+            <div className="pt-5 flex space-x-5  justify-center">
+                <div className="bg-slate-200 w-1/5 h-[125px] rounded-sm z-10"></div>
+                <div className="bg-slate-200 w-1/5 h-[75px] rounded-sm z-10"></div>
+                <div className="bg-slate-200 w-1/5 h-[100px] rounded-sm z-10"></div>
+              </div>
+              
+            <Image className="hover:opacity-75 rounded-sm object-cover" fill src={boardBg}  alt={boardBg} ></Image>
+
+            </div>
           </DialogHeader>
+          <div className="unsplashPreview flex flex-col space-y-2 mb-2 items-start ">
+            <p className="text-xs font-medium text-slate-700">Background</p>
+            <div className="flex items-center space-x-2 ">
+              {images.map(image => {
+                return (
+                  <div className="w-[60px] relative h-[40px]  rounded-sm " >
+                    <button onClick={() => setBoardBg(image.toString())} >
+                    <Image className="hover:opacity-75 rounded-sm" fill src={image.toString()}  alt={image.toString()} ></Image>
+                    </button>
+                  </div>
+
+                )
+              })}
+              
+              
+            </div>
+          </div>
 
           {/* form  */}
           <form action={CreateBoard} className="space-y-5">
@@ -83,9 +118,8 @@ export default function NewBoardDialog({ children }: { children: ReactNode }) {
                   onClick={() => {
                     toast({
                       title: "Board created successfully",
-                      className:"bg-rose-600 text-slate-100"
-                      
-                    })
+                      className: "bg-rose-600 text-slate-100",
+                    });
                   }}
                   variant={"primary"}
                   className="w-full"
