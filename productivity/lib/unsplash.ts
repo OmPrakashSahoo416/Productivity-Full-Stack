@@ -13,7 +13,7 @@ export async function GetImages() {
     const response = await unsplash.search.getPhotos({
       query: "pattern",
       page: 1,
-      perPage: 6,
+      perPage: 10,
       orientation: "landscape",
       orderBy: "relevant",
     });

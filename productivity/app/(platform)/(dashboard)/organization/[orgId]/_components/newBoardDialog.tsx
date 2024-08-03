@@ -1,4 +1,5 @@
 
+
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -75,7 +76,7 @@ export default function NewBoardDialog({
 
   return (
     <>
-      <Dialog>
+      <Dialog >
         <DialogTrigger>{children}</DialogTrigger>
         <DialogContent className="space-y-2 ">
           <DialogHeader className="flex flex-col items-center space-y-2">
@@ -98,14 +99,14 @@ export default function NewBoardDialog({
           </DialogHeader>
           <div className="unsplashPreview flex flex-col space-y-2 mb-2 items-start ">
             <p className="text-xs font-medium text-slate-700">Background</p>
-            <div className="flex items-center space-x-2 ">
+            <div className="flex items-center flex-wrap  ">
               {images.map((image,index) => {
                 return (
-                  <div className="w-[60px] group overflow-hidden relative h-[40px]  rounded-sm " >
-                    <button onClick={() => setBoardBg(image.toString())} >
+                  <div key={index} className="w-[60px] mr-2 mb-2 group overflow-hidden relative h-[40px]  rounded-sm " >
+                    <div  role="button" onClick={() => setBoardBg(image.toString())} >
                     <Image className="hover:opacity-75 rounded-sm" fill src={image.toString()}  alt={image.toString()} ></Image>
-                    <Link href={imageAuthor[index]} className="hidden bg-slate-100/40 underline  -bottom-5  relative text-[10px] truncate overflow-hidden text-slate-800 group-hover:flex" target="_blank">{imageAuthor[index]}</Link>
-                    </button>
+                    <Link href={imageAuthor[index]} className="hidden bg-slate-100/40 underline  top-7  relative text-[10px] truncate overflow-hidden text-slate-800 group-hover:flex" target="_blank">{imageAuthor[index]}</Link>
+                    </div>
                   </div>
 
                 )
