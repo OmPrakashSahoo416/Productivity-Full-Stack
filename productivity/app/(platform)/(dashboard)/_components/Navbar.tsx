@@ -30,7 +30,7 @@ export default function Navbar () {
 
       <div className="navRight flex space-x-4 items-center">
 
-        {/* <ClerkProvider> */}
+       
 
         <OrganizationSwitcher hidePersonal afterSelectOrganizationUrl={"/organization/:id"} ></OrganizationSwitcher>
         <UserButton afterSwitchSessionUrl="/" appearance={{elements :{
@@ -40,7 +40,6 @@ export default function Navbar () {
           }
         }}}></UserButton>
 
-        {/* </ClerkProvider> */}
         
         
       </div>

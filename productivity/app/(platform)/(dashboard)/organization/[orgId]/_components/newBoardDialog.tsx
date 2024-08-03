@@ -16,15 +16,20 @@ import { toast } from "@/components/ui/use-toast";
 import { GetImages } from "@/lib/unsplash";
 import Image from "next/image";
 import Link from "next/link";
+import { useParams } from "next/navigation";
 
 export default function NewBoardDialog({
   children,
 }: {
   children: ReactNode;
 }) {
+  // to fetch the organization id we are using use Params from next js 
+  const {orgId} : {orgId : string} = useParams();
+
+
   const [images, setImages] = useState<Array<string>>([]);
-  const [boardBg, setBoardBg] = useState<string>("");
-  const [imageAuthor, setImageAuthor] = useState<Array<string>>([]);
+  const [boardBg, setBoardBg] = useState<string>(""); // selected background for board
+  const [imageAuthor, setImageAuthor] = useState<Array<string>>([]); // links to images creater
 
   const fetch = async () => {
     try {
@@ -36,7 +41,7 @@ export default function NewBoardDialog({
         // console.log(responseImages)
         
         responseImages.map((image) => {
-          bg_images_temp.push(image.urls.thumb.toString())
+          bg_images_temp.push(image.urls.regular.toString())
           bg_authors_temp.push(image.user.links.html.toString())
         })
         setImages(bg_images_temp)
@@ -58,7 +63,10 @@ export default function NewBoardDialog({
   useEffect(() => {
 
     fetch()
+    
   }, [])
+
+  
 
   
     
@@ -81,8 +89,9 @@ export default function NewBoardDialog({
                 <div className="bg-slate-200 w-1/5 h-[75px] rounded-sm z-10"></div>
                 <div className="bg-slate-200 w-1/5 h-[100px] rounded-sm z-10"></div>
               </div>
+            
               
-            <Image className="hover:opacity-75 rounded-sm object-cover" fill src={boardBg == ""?images[0]?.toString():boardBg}  alt={boardBg} ></Image>
+            <Image className="hover:opacity-75 rounded-sm object-cover bg-slate-500" fill src={boardBg}  alt={boardBg} ></Image>
             
 
             </div>
@@ -95,7 +104,7 @@ export default function NewBoardDialog({
                   <div className="w-[60px] group overflow-hidden relative h-[40px]  rounded-sm " >
                     <button onClick={() => setBoardBg(image.toString())} >
                     <Image className="hover:opacity-75 rounded-sm" fill src={image.toString()}  alt={image.toString()} ></Image>
-                    <Link href={imageAuthor[index]} className="hidden bg-slate-100/40 underline rounded-sm -bottom-5  relative text-xs truncate overflow-hidden text-slate-800 group-hover:flex" target="_blank">{imageAuthor[index]}</Link>
+                    <Link href={imageAuthor[index]} className="hidden bg-slate-100/40 underline  -bottom-5  relative text-[10px] truncate overflow-hidden text-slate-800 group-hover:flex" target="_blank">{imageAuthor[index]}</Link>
                     </button>
                   </div>
 
@@ -115,20 +124,15 @@ export default function NewBoardDialog({
               >
                 Board Title
               </label>
-              <Input name="title" required={true} id="title" />
+              <Input name="title" required={true}  id="title" />
+              <Input type="hidden" value={boardBg} name="imageUrl" id="imageUrl" />
+              <Input type="hidden" value={orgId} name="org_id" id="org_id" />
             </div>
-            <div>
-              <label
-                htmlFor="theme"
-                className="text-xs font-medium text-slate-700"
-              >
-                Board Theme
-              </label>
-              <Input name="theme" required={true} id="theme" />
-            </div>
+            
             <DialogClose className="w-full">
               <div>
                 <Button
+                type="submit"
                   onClick={() => {
                     toast({
                       title: "Board created successfully",
@@ -144,8 +148,8 @@ export default function NewBoardDialog({
             </DialogClose>
           </form>
           <DialogDescription className="text-xs text-slate-800 font-light">
-            By using images from Unsplash, you agree to their terms and
-            conditions.
+            By using images from Unsplash, you agree to their <Link className="hover:underline" target="_blank" href="https://unsplash.com/terms" >terms and
+            conditions</Link>.
           </DialogDescription>
         </DialogContent>
       </Dialog>

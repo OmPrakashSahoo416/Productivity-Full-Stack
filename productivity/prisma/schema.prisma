@@ -21,10 +21,13 @@ model User {
   email         String?   @unique
   @@map(name: "users")
 }
+// db text to store larger text like urls in this case else default to 191 characters
 model Board {
   id            String       @default(cuid()) @id
-  title          String?
-  theme         String?   @unique
+  title         String
+  imageUrl      String       @db.Text
+  org_id        String
+  
   @@map(name: "boards")
 }
 
