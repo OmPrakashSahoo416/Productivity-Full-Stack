@@ -10,10 +10,8 @@ function AuthLayout ({children}:{children:ReactNode}) {
 
     <>
     <Navbar></Navbar>
-      <div className="dashboardLayout mt-20  flex items-start">
-        <div className="sideBar lg:ml-20 ml-10  shrink-0 md:block hidden w-60">
-          <SideBar></SideBar>
-        </div>
+      <div className="dashboardLayout flex items-start">
+        
         <div className="w-full">
 
         {children}

@@ -12,6 +12,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Skeleton } from "@/components/ui/skeleton";
+import { useParams } from "next/navigation";
 
 // import { redirect } from "next/navigation";
 
@@ -26,10 +27,12 @@ export default function BoardList() {
   // let boardsList: boardType[] = [];
   const [boardsList, setBoardsList] = useState<boardType[]>([]);
 
+  const {orgId}:{orgId:string} = useParams()
+
   async function fetch() {
     try {
       // to get some data from the database but this is a client side file so doing all this
-      const boards = await FetchDb();
+      const boards = await FetchDb(orgId);
 
       setBoardsList(boards);
     } catch (err) {
@@ -48,7 +51,7 @@ export default function BoardList() {
             {boardsList.map((board) => {
               // console.log(board);
               return (
-                <Link key={board.id} href={`board/${board.id}`}>
+                <Link key={board.id} href={`/board/${board.id}`} >
                   <div
                     id={board.id}
                     className="newBoardBox flex relative flex-col mr-5 mb-5 items-center justify-center w-[200px] h-[100px] bg-rose-50 rounded-sm"

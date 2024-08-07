@@ -14,7 +14,7 @@ export default function Navbar () {
   return (
 
     <>
-    <div className=" sticky top-0 bg-slate-50 py-2 px-10 drop-shadow-sm border w-full justify-between  flex items-center">
+    <div className=" sticky z-[100] top-0 bg-slate-50 py-2 px-10 drop-shadow-sm border w-full justify-between  flex items-center">
 
       
       
