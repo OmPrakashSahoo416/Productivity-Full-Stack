@@ -12,10 +12,10 @@ export async function GetImages() {
   try {
     const response = await unsplash.search.getPhotos({
       query: "pattern",
-      page: 1,
+      page: Math.floor(Math.random() * 5) + 1,
       perPage: 10,
       orientation: "landscape",
-      orderBy: "relevant",
+      orderBy: "latest",
     });
     // console.log(response)
     const imagesArr = response.response?.results;

@@ -76,12 +76,7 @@ function SideBar() {
                   <Button  variant={"ghost"} size={"left"} className="mb-2 w-full focus:bg-slate-300"><SquareKanban size={"20px"} className="mr-2"></SquareKanban>Boards</Button>
 
                   </a>
-                  
-                  <a href={`/organization/${org.organization.id}/views`}>
-                  <Button variant={"ghost"} size={"left"} className="w-full  mb-2 focus:bg-slate-300"><LayoutGrid size={"20px"} className="mr-2" />Views</Button>
-                  </a>
-
-                  
+ 
                   <a href={`/organization/${org.organization.id}/members`}>
                   <Button variant={"ghost"} size={"left"} className="w-full mb-2   focus:bg-slate-300"><Users size={"20px"} className="mr-2" />Members</Button>
                   </a>

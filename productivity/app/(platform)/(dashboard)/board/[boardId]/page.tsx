@@ -21,9 +21,11 @@ export default async function BoardPage({
     <div 
     className="h-screen overflow-hidden p-5 w-screen bg-no-repeat bg-center bg-cover"
       style={{backgroundImage:`url(${board?.imageUrl})`}}>
-        <div className="absolute inset-0 bg-black/20 "></div>
-        <p className="text-xl font-bold text-slate-50 ">{board?.title}</p>
+          
+        <div className="boardContents  mt-[50px]">
+          <p className=" font-bold  text-slate-50 ">{board?.id}</p>
+        </div>
       </div>
-    </>
+    </> 
   )
 }

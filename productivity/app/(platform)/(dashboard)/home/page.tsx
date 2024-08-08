@@ -2,6 +2,7 @@
 import { CreateBoard } from "@/actions/create-board";
 import { Input } from "@/components/ui/input";
 import Image from "next/image";
+import SideBar from "../_components/SideBar";
 
 
 export default function Home () {
@@ -9,8 +10,11 @@ export default function Home () {
 
   return (
     <>
-      <div className="homePage px-20 w-full">
-      <div className="mt-2">
+      <div className="homePage flex mt-20 space-x-5 px-20 w-full">
+      <div className="sideBar lg:ml-20 ml-10  shrink-0 md:block hidden w-60">
+          <SideBar></SideBar>
+        </div>
+      <div className="mt-2 w-full">
         <div className="homeContent flex flex-col items-center space-y-4">
 
           <div className="relative h-[150px] flex flex-col w-full">

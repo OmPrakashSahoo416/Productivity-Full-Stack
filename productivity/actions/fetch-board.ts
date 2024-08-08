@@ -22,3 +22,4 @@ export async function FetchBoardUnique(boardId:string) {
   }})
   return data
 }
+

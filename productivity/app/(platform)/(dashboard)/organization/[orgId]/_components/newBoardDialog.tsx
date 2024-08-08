@@ -18,6 +18,7 @@ import { GetImages } from "@/lib/unsplash";
 import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
+import { useAuth } from "@clerk/nextjs";
 
 export default function NewBoardDialog({
   children,
@@ -26,6 +27,7 @@ export default function NewBoardDialog({
 }) {
   // to fetch the organization id we are using use Params from next js 
   const {orgId} : {orgId : string} = useParams();
+  const orgId2 = useAuth().orgId as string
 
 
   const [images, setImages] = useState<Array<string>>([]);
@@ -84,15 +86,15 @@ export default function NewBoardDialog({
               Create board
               
             </DialogTitle>
-            <div className="boardPreview relative  flex-col items-center justify-center w-[250px] h-[150px] bg-rose-50 rounded-sm">
+            <div className="boardPreview relative  flex-col items-center justify-center w-[250px] h-[150px] bg-rose-500 rounded-sm">
             <div className="pt-5 flex space-x-5  justify-center">
-                <div className="bg-slate-200 w-1/5 h-[125px] rounded-sm z-10"></div>
+                <div className="bg-slate-200 w-1/5 h-[100px] rounded-sm z-10"></div>
                 <div className="bg-slate-200 w-1/5 h-[75px] rounded-sm z-10"></div>
                 <div className="bg-slate-200 w-1/5 h-[100px] rounded-sm z-10"></div>
               </div>
             
               
-            <Image className="hover:opacity-75 rounded-sm object-cover bg-slate-500" fill src={boardBg}  alt={boardBg} ></Image>
+              {boardBg && <Image className="hover:drop-shadow-lg rounded-sm object-cover bg-slate-500" fill src={boardBg}  alt={boardBg} ></Image>}
             
 
             </div>
@@ -127,7 +129,7 @@ export default function NewBoardDialog({
               </label>
               <Input name="title" required={true}  id="title" />
               <Input type="hidden" value={boardBg} name="imageUrl" id="imageUrl" />
-              <Input type="hidden" value={orgId} name="org_id" id="org_id" />
+              <Input type="hidden" value={orgId || orgId2} name="org_id" id="org_id" />
             </div>
             
             <DialogClose className="w-full">
