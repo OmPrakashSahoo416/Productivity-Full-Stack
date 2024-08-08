@@ -154,6 +154,7 @@ export default function NewBoardDialog({
           </DialogDescription>
         </DialogContent>
       </Dialog>
+      
     </>
   );
 }

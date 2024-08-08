@@ -24,7 +24,7 @@ export async function CreateBoard(formData:FormData) {
   // revalidatePath(`organization/${newBoard.org_id}`) Not working here gonna implement somewhere else
 
   // to redirect to board after successful creation of board 
-  redirect(`board/${newBoard.id}`)
+  redirect(`/board/${newBoard.id}`)
 
   
 
