@@ -11,11 +11,11 @@ export async function GetImages() {
 
   try {
     const response = await unsplash.search.getPhotos({
-      query: "pattern",
+      query: "wallpaper",
       page: Math.floor(Math.random() * 5) + 1,
       perPage: 10,
       orientation: "landscape",
-      orderBy: "latest",
+      orderBy: "relevant",
     });
     // console.log(response)
     const imagesArr = response.response?.results;

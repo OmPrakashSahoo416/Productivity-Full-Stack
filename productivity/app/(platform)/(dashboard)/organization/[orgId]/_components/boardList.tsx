@@ -45,7 +45,7 @@ export default function BoardList() {
 
   return (
     <>
-      <div className="boardList w-full flex ">
+      <div className="boardList w-full">
         <div className="newBoard flex flex-wrap">
           <div className="flex flex-wrap  md:justify-start justify-center items-center">
             {boardsList.map((board) => {
@@ -56,11 +56,12 @@ export default function BoardList() {
                     <div
                       id={board.id}
                       className="newBoardBox  hover:drop-shadow-xl group flex relative flex-col mr-5 mb-5 items-center justify-center w-[200px] h-[100px]  rounded-sm"
+                      
                     >
                       
 
                       <Image
-                        className=" bg-center  bg-cover bg-rose-100 rounded-sm drop-shadow-md "
+                        className=" bg-center shadow-inner shadow-slate-800  bg-cover bg-rose-100 rounded-sm drop-shadow-lg "
                         fill
                         src={board.imageUrl}
                         alt={board.title!}
@@ -77,7 +78,7 @@ export default function BoardList() {
               );
             })}
           </div>
-
+          </div>
           <NewBoardDialog>
             <hr className="border-1 w-full m-auto border-slate-300" />
 
@@ -104,7 +105,7 @@ export default function BoardList() {
               </p>
             </div>
           </NewBoardDialog>
-        </div>
+        
       </div>
     </>
   );

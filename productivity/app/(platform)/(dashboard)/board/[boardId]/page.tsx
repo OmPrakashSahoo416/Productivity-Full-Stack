@@ -31,7 +31,7 @@ export default async function BoardPage({
       }
     },
     orderBy:{
-      order:"asc"
+      order:"desc"
     }
   })
 
@@ -42,9 +42,9 @@ export default async function BoardPage({
     className="h-screen overflow-hidden p-5 w-screen bg-no-repeat bg-center bg-cover"
       style={{backgroundImage:`url(${board?.imageUrl})`}}>
           
-        <div className="lists mt-10 flex space-x-5 h-fit ">
+        <div className="lists mt-10  ">
 
-          <ListComponent></ListComponent>
+          <ListComponent boardId={boardId} lists={lists}></ListComponent>
 
         </div>
 
