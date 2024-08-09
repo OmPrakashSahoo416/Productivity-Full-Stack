@@ -1,7 +1,7 @@
+
 import { FetchBoardUnique } from "@/actions/fetch-board"
 import { db } from "@/lib/db"
-// import { useParams } from "next/navigation"
-
+import ListComponent from "../_components/ListComponent"
 
 
 export default async function BoardPage({
@@ -13,7 +13,27 @@ export default async function BoardPage({
   // const {boardId} : {boardId:string} = useParams()
   const boardId = params.boardId
 
+  
+
   const board = await FetchBoardUnique(boardId)
+
+  // fetching the lists inside a single board along with card component and 
+  // ordering in ascending order accroding to order field in db
+  const lists = await db.list.findMany({
+    where:{
+      boardId:boardId,
+    },
+    include:{
+      cards:{
+        orderBy:{
+          order:"asc"
+        }
+      }
+    },
+    orderBy:{
+      order:"asc"
+    }
+  })
 
 
   return(
@@ -22,9 +42,12 @@ export default async function BoardPage({
     className="h-screen overflow-hidden p-5 w-screen bg-no-repeat bg-center bg-cover"
       style={{backgroundImage:`url(${board?.imageUrl})`}}>
           
-        <div className="boardContents  mt-[50px]">
-          <p className=" font-bold  text-slate-50 ">{board?.id}</p>
+        <div className="lists mt-10 flex space-x-5 h-fit ">
+
+          <ListComponent></ListComponent>
+
         </div>
+
       </div>
     </> 
   )

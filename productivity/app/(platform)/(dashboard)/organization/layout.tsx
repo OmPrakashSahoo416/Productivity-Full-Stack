@@ -15,7 +15,7 @@ function OrganizationLayout ({children}: {children:ReactNode}) {
     <div className="sideBar lg:ml-20 ml-10  shrink-0 md:block hidden w-60">
           <SideBar></SideBar>
         </div>
-        <div className="w-full">
+        <div className="w-full ">
 
         {children}
         </div>
