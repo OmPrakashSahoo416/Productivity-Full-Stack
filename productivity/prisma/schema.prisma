@@ -9,44 +9,46 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url = env("POSTGRES_PRISMA_URL") // uses connection pooling
-  directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
+  provider     = "postgresql"
+  url          = env("POSTGRES_PRISMA_URL") // uses connection pooling
+  directUrl    = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
   relationMode = "prisma"
 }
 
 model User {
-  id            String       @default(cuid()) @id
-  name          String?
-  email         String?   @unique
+  id    String  @id @default(cuid())
+  name  String?
+  email String? @unique
+
   @@map(name: "users")
 }
+
 // boards of particular organization 
 model Board {
-  id            String       @default(cuid()) @id
-  title         String
+  id       String @id @default(cuid())
+  title    String
   // db text to take input larger texts 
-  imageUrl      String       @db.Text
-  org_id        String
+  imageUrl String @db.Text
+  org_id   String
 
   // getting the joines list of lists where board matches 
-  lists         List[]
-  
+  lists List[]
+
   @@map(name: "boards")
 }
 
 // lists to be shown on boards
 model List {
-  id String @id @default(uuid())
+  id    String @id @default(uuid())
   title String
 
   // To keep the ordering after drap and drop events or when loading also...
   order Int
 
-// Relation or join where board id is the foreign key and id is taken from board schema
-// on delete cascade means to delete the list when board is deleted...
+  // Relation or join where board id is the foreign key and id is taken from board schema
+  // on delete cascade means to delete the list when board is deleted...
   board Board @relation(fields: [boardId], references: [id], onDelete: Cascade)
-  
+
   boardId String
 
   // cards list in the list schema 
@@ -54,23 +56,18 @@ model List {
 
   // to get rid of errors on using the foreign key ==> pass the foreign key in index
   @@index([boardId])
-
 }
-
 
 // each card component in the list and should get deleted when the list is also deleted 
 model Card {
-  id String @id @default(uuid())
-  title String
+  id          String @id @default(uuid())
+  title       String
   description String @db.Text
-  order Int
+  order       Int
 
   list List @relation(fields: [listId], references: [id], onDelete: Cascade)
 
   listId String
 
   @@index([listId])
-
 }
-
-

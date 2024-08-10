@@ -8,11 +8,11 @@ import { ServerActionDispatcher } from "next/dist/client/components/router-reduc
 import { Dispatch, SetStateAction, useEffect } from "react";
 
 interface AddListComponentProps {
-  setIsEditing: any,
-  setFormTitle: Dispatch<SetStateAction<string>>,
-  isEditing: boolean,
-  formTitle:String,
-  boardId:String
+  setIsEditing: any;
+  setFormTitle: Dispatch<SetStateAction<string>>;
+  isEditing: boolean;
+  formTitle: String;
+  boardId: String;
 }
 
 function AddListComponent({
@@ -22,19 +22,18 @@ function AddListComponent({
   formTitle,
   boardId,
 }: AddListComponentProps) {
+  
   useEffect(() => {
     setFormTitle("");
   }, [isEditing]);
-
 
   function onSubmitNewList() {
     toast({
       title: "List created successfully",
       className: "bg-rose-600 text-slate-100",
-    })
+    });
 
-    return setIsEditing(false)
-
+    return setIsEditing(false);
   }
 
   if (isEditing) {

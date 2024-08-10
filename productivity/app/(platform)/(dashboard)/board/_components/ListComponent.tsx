@@ -24,48 +24,36 @@ function ListComponent({
   const [isEditing, setIsEditing] = useState(false);
   const [formTitle, setFormTitle] = useState("");
 
-  // console.log(lists)
-
-  // useEffect(() => {
-  //   setFormTitle("");
-  // }, [isEditing]);
-
-  // console.log(formTitle)
+  
 
   // lists contains the cards and the list so does the type above
-
-  
 
   return (
     <>
       <div className="listComponent flex items-start space-x-5">
         {/* lists array and at the end of lists a add button */}
         {lists.map((list, index) => {
-          return(
-            
-              <div key={list?.id} className="uniqueList shrink-0 drop-shadow-md w-[275px] bg-slate-400/70 rounded-md flex items-center flex-col ">
+          return (
+            <div
+              key={list?.id}
+              className="uniqueList shrink-0 drop-shadow-md w-[275px] bg-slate-400/70 rounded-md flex items-center flex-col "
+            >
               <ListHeader list={list}></ListHeader>
               <div className="cards p-3"></div>
 
-
               {/* add card button here inside of a list  */}
-              <CardAddButton></CardAddButton>
-              </div>
-
-            
-          )
+              <CardAddButton listId={list.id as string} boardId={boardId as string}></CardAddButton>
+            </div>
+          );
         })}
-        <AddListComponent setIsEditing={setIsEditing} setFormTitle={setFormTitle} boardId={boardId} formTitle={formTitle} isEditing={isEditing} />
-        {/* <div className="addlistcomponent">
-          <button
-            onClick={() => setIsEditing(true)}
-            className="backdrop-blur-sm drop-shadow-md w-[300px] bg-slate-200/20 hover:bg-slate-200/30 rounded-md text-sm flex items-center p-3 text-white space-x-2"
-          >
-            <Plus size={12}></Plus>
-            <p>Add a list</p>
-          </button>
-        </div> */}
-
+        <AddListComponent
+          setIsEditing={setIsEditing}
+          setFormTitle={setFormTitle}
+          boardId={boardId}
+          formTitle={formTitle}
+          isEditing={isEditing}
+        />
+        
       </div>
     </>
   );
