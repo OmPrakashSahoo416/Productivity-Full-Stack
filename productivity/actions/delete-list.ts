@@ -6,9 +6,9 @@ import { redirect } from "next/navigation"
 
 
 
-export async function DeleteBoard(listId:string, boardId:string) {
+export async function DeleteList(listId:string, boardId:string) {
 
-  const deleteUser = await db.list.delete({
+  const deleteList = await db.list.delete({
     where: {
       id: listId,
     },

@@ -20,7 +20,7 @@ export default  function BoardNavbar ({board}:{board:{
   org_id: string;
 } | null}) {
 
-  const [newBoardTitle, setNewBoardTitle] = useState(board?.title as string);
+  const [newBoardTitle, setNewBoardTitle] = useState(board?.title as string || "");
   // console.log(newBoardTitle)
   
   
@@ -29,7 +29,7 @@ export default  function BoardNavbar ({board}:{board:{
     <>
       <div className="BoardNavbar absolute bg-slate-600/5  px-10 flex items-center justify-between w-full h-[50px] backdrop-blur-sm ">
         <div className="boardTitle">
-          <Input onBlur={() => newBoardTitleSetting(board?.id as string,newBoardTitle as string)} value={newBoardTitle} onChange={(e) => setNewBoardTitle(e.target.value)} className="text-slate-50 bg-transparent font-bold focus-visible:border-0 focus-visible:ring-0 focus-visible:ring-offset-0 border-none outline-none" defaultValue={board?.title as string}></Input>
+          <Input onBlur={() => newBoardTitleSetting(board?.id as string,newBoardTitle as string)} value={newBoardTitle} onChange={(e) => setNewBoardTitle(e.target.value)} className="text-slate-50 bg-transparent font-bold focus-visible:border-0 focus-visible:ring-0 focus-visible:ring-offset-0 border-none outline-none"></Input>
 
         </div>
         <div className="deleteButton">

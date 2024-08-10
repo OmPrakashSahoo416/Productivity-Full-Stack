@@ -42,8 +42,8 @@ function ListComponent({
         {/* lists array and at the end of lists a add button */}
         {lists.map((list, index) => {
           return(
-            <>
-              <div key={index} className="uniqueList shrink-0 drop-shadow-md w-[275px] bg-slate-400/70 rounded-md flex items-center flex-col ">
+            
+              <div key={list?.id} className="uniqueList shrink-0 drop-shadow-md w-[275px] bg-slate-400/70 rounded-md flex items-center flex-col ">
               <ListHeader list={list}></ListHeader>
               <div className="cards p-3"></div>
 
@@ -52,7 +52,7 @@ function ListComponent({
               <CardAddButton></CardAddButton>
               </div>
 
-            </>
+            
           )
         })}
         <AddListComponent setIsEditing={setIsEditing} setFormTitle={setFormTitle} boardId={boardId} formTitle={formTitle} isEditing={isEditing} />
