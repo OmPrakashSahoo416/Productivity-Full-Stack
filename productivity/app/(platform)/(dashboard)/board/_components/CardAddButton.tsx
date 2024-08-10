@@ -30,7 +30,7 @@ function CardAddButton({listId, boardId}:{listId:string,boardId:string}) {
   if (isEditing) {
     return (
       <>
-      <div >
+      <div className="mt-2 sticky bottom-0 z-[1000] bg-slate-700 rounded-md" >
 
       
       <form
@@ -38,7 +38,7 @@ function CardAddButton({listId, boardId}:{listId:string,boardId:string}) {
           onSubmit={() => onSubmitNewCard()}
           action={CreateCard}
           
-          className="backdrop-blur-sm drop-shadow-md w-[275px] bg-slate-100/20 hover:bg-slate-100/40 rounded-md text-sm flex flex-col items-center p-3 font-semibold space-y-2"
+          className=" backdrop-blur-sm drop-shadow-md w-[275px] bg-slate-100/20 hover:bg-slate-100/40 rounded-md text-sm flex flex-col items-center p-3 font-semibold space-y-2"
         >
           <Input
             required
@@ -99,7 +99,7 @@ function CardAddButton({listId, boardId}:{listId:string,boardId:string}) {
 
   return (
     <>
-       <Button onClick={() => setIsEditing(true)} variant={"ghost"} className="flex w-full text-slate-100 rounded-t-none items-center justify-center text-sm font-semibold space-x-2"><Plus size={12}></Plus> Add card</Button>
+       <Button onClick={() => setIsEditing(true)} variant={"ghost"} className="flex mt-2 w-full text-slate-100 sticky bottom-0 z-[1000] bg-slate-700 rounded-t-none items-center justify-center text-sm font-semibold space-x-2"><Plus size={12}></Plus> Add card</Button>
       
     </>
   );

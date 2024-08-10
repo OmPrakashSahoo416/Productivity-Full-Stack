@@ -39,10 +39,10 @@ export default async function BoardPage({
   return(
     <>
     <div 
-    className="h-screen overflow-hidden p-5 w-screen bg-no-repeat bg-center bg-cover"
+    className="h-full p-5  bg-no-repeat bg-center overflow-x-auto bg-cover"
       style={{backgroundImage:`url(${board?.imageUrl})`}}>
           
-        <div className="lists mt-10  ">
+        <div className="lists mt-10   ">
 
           <ListComponent boardId={boardId} lists={lists}></ListComponent>
 

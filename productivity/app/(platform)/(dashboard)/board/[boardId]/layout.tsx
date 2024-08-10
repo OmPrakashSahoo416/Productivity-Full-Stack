@@ -19,7 +19,7 @@ async function BoardLayout ({children, params}: {children:ReactNode, params:{boa
   return (
   <>
   
-  <div className="boardLayout  overflow-auto">
+  <div className="boardLayout w-full  overflow-auto">
 
         <div className="boardnavbar ">
           <BoardNavbar board = {board}></BoardNavbar>

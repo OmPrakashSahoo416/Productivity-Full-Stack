@@ -9,9 +9,12 @@ import { CreateList } from "@/actions/create-list";
 import ListHeader from "./ListHeader";
 import CardAddButton from "./CardAddButton";
 import AddListComponent from "./AddListComponent";
+import { UpdateCardTitle } from "@/actions/update-card";
+import CardEdit from "./CardEdit";
 
 // creating a list component
-async function createList() {}
+// async function createList() {}
+
 
 function ListComponent({
   boardId,
@@ -23,6 +26,7 @@ function ListComponent({
   // to keep the status if the creating of list is going on or not
   const [isEditing, setIsEditing] = useState(false);
   const [formTitle, setFormTitle] = useState("");
+  
 
   
 
@@ -30,16 +34,34 @@ function ListComponent({
 
   return (
     <>
-      <div className="listComponent flex items-start space-x-5">
+      <div className="listComponent flex items-start h-screen    space-x-5">
         {/* lists array and at the end of lists a add button */}
         {lists.map((list, index) => {
           return (
             <div
               key={list?.id}
-              className="uniqueList shrink-0 drop-shadow-md w-[275px] bg-slate-400/70 rounded-md flex items-center flex-col "
+              className="uniqueList space-y-2 h-auto  overflow-auto rounded-md  max-h-[600px] shrink-0 drop-shadow-md w-[280px] bg-slate-400/70  flex items-center flex-col "
             >
               <ListHeader list={list}></ListHeader>
-              <div className="cards p-3"></div>
+              
+
+              {/* Cards list here to individual list component */}
+              {/* <div className="items-center flex flex-col space-y-2 w-full"> */}
+
+                {list.cards.map(card => {
+                  return (
+                    <div key={card.id } className="rounded-t-md space-y-1 w-full flex flex-col justify-center items-center bg-slate-100">
+
+                      <div className="w-full text-pretty ">
+
+                      <CardEdit cardId={card.id} list={list}></CardEdit>
+                      </div>
+
+
+                    </div>
+                  )
+                })}
+              {/* </div> */}
 
               {/* add card button here inside of a list  */}
               <CardAddButton listId={list.id as string} boardId={boardId as string}></CardAddButton>

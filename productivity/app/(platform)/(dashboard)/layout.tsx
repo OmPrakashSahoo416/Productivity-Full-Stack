@@ -11,7 +11,7 @@ function AuthLayout({ children }: { children: ReactNode }) {
           <SideBar></SideBar>
         </div> */}
 
-        <div className="w-full">{children}</div>
+        <div className="w-full ">{children}</div>
       </div>
     </>
   );
