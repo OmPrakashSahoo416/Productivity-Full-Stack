@@ -15,3 +15,15 @@ export async function UpdateBoardTitle(boardId:string,newTitle : string) {
   return data;
 
 }
+export async function UpdateBoardList(boardId:string,newList) {
+  console.log("Updating board")
+  
+  const data =  db.board.update({ where:{id:boardId}, data:{
+    lists:newList
+  }})
+
+    console.log("Updating board complete")
+
+  return data;
+
+}

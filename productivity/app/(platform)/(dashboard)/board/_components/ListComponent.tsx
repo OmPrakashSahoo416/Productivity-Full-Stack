@@ -12,6 +12,20 @@ import AddListComponent from "./AddListComponent";
 import { UpdateCardTitle } from "@/actions/update-card";
 import CardEdit from "./CardEdit";
 import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
+import { UpdateBoardList } from "@/actions/update-board";
+import { db } from "@/lib/db";
+
+
+// important generalized reordering logic in case of dnd ======
+function reorder<T>(list : T[], startInd:number, endInd:number) {
+
+  const result = Array.from(list);
+  const [removed] = result.splice(startInd, 1);
+  result.splice(endInd, 0, removed)
+
+  return result
+
+}
 
 // creating a list component
 // async function createList() {}
@@ -23,6 +37,109 @@ function ListComponent({
   boardId: string;
   lists: ({ cards: Card[] } & List)[];
 }) {
+
+  
+
+  // on drag end function 
+  function OnDragEnd(result : any) {
+
+
+    
+
+
+    // console.log("await")
+    const {destination, source, type} = result
+
+      // if there is no destination that is the drop is not on a droppable thing 
+    if(!destination) {
+      return 
+    }
+    
+
+    // if index or the source is the same as destination then too dont do anything
+    if(destination.droppableId == source.droppableId && destination.index == source.index) {
+      return
+    }
+    console.log("ttt")
+
+    // 2 types - list and card
+    if (type == "list") {
+      
+
+      const newList = reorder(lists, source.index, destination.index).map((item,index) => {
+
+        return (
+          {...item, order:index}
+        )
+      })
+
+      // lists = newList // changing local state
+      // server update
+      // UpdateBoardList(boardId, newList)
+      
+      
+
+
+    }
+
+    if (type == "card") {
+
+      const sourceList = lists.find(list => list.id == source.droppableId)
+      const destinationList = lists.find(list => list.id == destination.droppableId)
+
+      // checking if they contain list or not 
+      if(!sourceList?.cards) {
+        sourceList.cards = []
+      }
+      if(!destinationList?.cards) {
+        destinationList.cards = []
+      }
+
+      // 2 cases moving in same list or in different lists
+      if(source.droppableId == destination.droppableId) {
+        const newCards = reorder(
+          sourceList.cards,
+          source.index,
+          destination.index
+        )
+
+        newCards.forEach((card, index) => card.order = index)
+
+
+        sourceList.cards = newCards // local state update
+        
+      } else {
+        // get the moved card
+        const [movedCard] = sourceList.cards.splice(source.index, 1)
+
+        // add the moved card to new destination list ==> droppable id is list id
+        movedCard.listId = destination.droppableId
+
+        // adding the movedCard at the correct index in destination list
+        destinationList?.cards.splice(destination.index, 0, movedCard)
+
+
+        // now resetting index in both source and destination lists 
+        sourceList?.cards.forEach((card, index) => card.order = index)
+        destinationList?.cards.forEach((card, index) => card.order = index)
+
+        // local state
+
+
+      }
+
+
+      
+
+
+
+    }
+
+
+
+  }
+
+
   // to keep the status if the creating of list is going on or not
   const [isEditing, setIsEditing] = useState(false);
   const [formTitle, setFormTitle] = useState("");
@@ -31,7 +148,7 @@ function ListComponent({
 
   return (
     <>
-      <DragDropContext onDragEnd={() => {}}>
+      <DragDropContext onDragEnd={OnDragEnd}>
         <Droppable direction="horizontal" droppableId="lists" type="list">
           {(provided) => (
             <div
@@ -49,7 +166,7 @@ function ListComponent({
                         key={list?.id}
                         {...provided.draggableProps}
                         ref={provided.innerRef}
-                        className="uniqueList space-y-2 h-auto rounded-md  max-h-[600px] shrink-0 drop-shadow-md w-[280px] bg-slate-400/70  flex items-center flex-col "
+                        className="uniqueList space-y-2 h-auto rounded-md  shrink-0 drop-shadow-md w-[280px] bg-slate-400/70  flex items-center flex-col "
                       >
                         <div {...provided.dragHandleProps} className="w-full bg-slate-700 text-slate-100  flex items-center">
                           <p
@@ -92,8 +209,8 @@ function ListComponent({
                                         onDrag={() => console.log("Dragging")}
                                         className={`rounded-t-md !top-auto !left-auto space-y-1  w-full flex flex-col justify-center items-center bg-slate-100 ${
                                           snapshot.isDragging
-                                            ? "hover:cursor-grabbing z-50 " 
-                                            : " z-10 "
+                                            ? "hover:cursor-grabbing  " 
+                                            : "  "
                                         }`}
                                       >
                                         <div {...provided.dragHandleProps} className=" text-center rounded-md bg-slate-400">drag</div>
