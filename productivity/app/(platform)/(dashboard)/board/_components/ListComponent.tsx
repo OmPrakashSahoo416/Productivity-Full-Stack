@@ -32,64 +32,97 @@ function ListComponent({
   return (
     <>
       <DragDropContext onDragEnd={() => {}}>
-        <Droppable direction="horizontal"  droppableId="lists" type="list">
+        <Droppable direction="horizontal" droppableId="lists" type="list">
           {(provided) => (
-            <div {...provided.droppableProps} ref={provided.innerRef} className="listComponent flex items-start h-screen space-x-5">
+            <div
+              {...provided.droppableProps}
+              ref={provided.innerRef}
+              className="listComponent flex items-start h-screen  space-x-5"
+            >
               {/* lists array and at the end of lists a add button */}
               {lists.map((list, index) => {
                 return (
-                  <Draggable draggableId={list.id} index={index} >
-                    {provided => (
-
-                   
-                  <div
-                    key={list?.id}
-                    {...provided.draggableProps}
-                    ref={provided.innerRef}
-                    className="uniqueList space-y-2 h-auto   overflow-auto rounded-md  max-h-[600px] shrink-0 drop-shadow-md w-[280px] bg-slate-400/70  flex items-center flex-col "
-                  >
-                    <div  className="w-full bg-slate-700 text-slate-100  flex items-center">
-                      <p {...provided.dragHandleProps} className="p-3 text-center">...</p>
-
-                      <ListHeader  list={list}></ListHeader>
-                    </div>
-
-                    {/* Cards list here to individual list component */}
-                    {/* <div className="items-center flex flex-col space-y-2 w-full"> */}
-
-                    {/* </div> */}
-                    <Droppable droppableId={list.id} type="card">
-                      {provided => (
-
-                      
-                    <div ref={provided.innerRef} {...provided.innerRef} className="w-full px-1 space-y-2 hover:drop-shadow-md hover:cursor-grab">
-                      {list.cards.map((card) => {
-                        return (
-                          <div
-                            key={card.id}
-                            className="rounded-t-md  space-y-1 w-full flex flex-col justify-center items-center bg-slate-100"
+                  <div key={list.id}>
+                  <Draggable draggableId={list.id} index={index}>
+                    {(provided) => (
+                      <div
+                        key={list?.id}
+                        {...provided.draggableProps}
+                        ref={provided.innerRef}
+                        className="uniqueList space-y-2 h-auto rounded-md  max-h-[600px] shrink-0 drop-shadow-md w-[280px] bg-slate-400/70  flex items-center flex-col "
+                      >
+                        <div {...provided.dragHandleProps} className="w-full bg-slate-700 text-slate-100  flex items-center">
+                          <p
+                            
+                            className="p-3 text-center"
                           >
-                            <div className="w-full text-pretty ">
-                              <CardEdit cardId={card.id} list={list}></CardEdit>
-                            </div>
-                          </div>
-                        );
-                      })}
-                      {provided.placeholder}
-                    </div>
-                    
-                    
-                    )}
-                    </Droppable>
+                            ::
+                          </p>
 
-                    {/* add card button here inside of a list  */}
-                    <CardAddButton
-                      listId={list.id as string}
-                      boardId={boardId as string}
-                    ></CardAddButton>
-                  </div>
-                   )}
+                          <ListHeader list={list}></ListHeader>
+                        </div>
+
+                        {/* Cards list here to individual list component */}
+                        
+                        <Droppable droppableId={list.id} type="card">
+                          {(provided) => (
+                            <div
+                              ref={provided.innerRef}
+                              {...provided.droppableProps}
+                              className="w-full px-1 space-y-2 hover:drop-shadow-md "
+                            >
+                              {list.cards.map((card, index) => {
+                                return (
+                                  <div key={card.id}>
+                                  <Draggable
+
+                                    
+                                    draggableId={card.id}
+                                    index={index}
+                                  >
+                                    {(provided, snapshot) => {
+                                        if (snapshot.isDragging) {
+                                          
+                                       }
+                                      
+                                      return (
+                                      <div
+                                        ref={provided.innerRef}
+                                        {...provided.draggableProps}
+                                        onDrag={() => console.log("Dragging")}
+                                        className={`rounded-t-md !top-auto !left-auto space-y-1  w-full flex flex-col justify-center items-center bg-slate-100 ${
+                                          snapshot.isDragging
+                                            ? "hover:cursor-grabbing z-50 " 
+                                            : " z-10 "
+                                        }`}
+                                      >
+                                        <div {...provided.dragHandleProps} className=" text-center rounded-md bg-slate-400">drag</div>
+                                        <div className="w-full text-pretty">
+                                          <CardEdit
+                                            cardId={card.id}
+                                            list={list}
+                                          ></CardEdit>
+                                        </div>
+                                      </div>
+                                    )}}
+                                  </Draggable>
+                                  </div>
+                                );
+                              })}
+                              {provided.placeholder}
+                            </div>
+                          )}
+                        </Droppable>
+
+                        {/* add card button here inside of a list  */}
+                        <CardAddButton
+                          listId={list.id as string}
+                          boardId={boardId as string}
+                        ></CardAddButton>
+                      </div>
+                    )}
                   </Draggable>
+                  </div>
                 );
               })}
               {provided.placeholder}

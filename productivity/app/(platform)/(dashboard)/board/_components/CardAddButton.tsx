@@ -30,7 +30,7 @@ function CardAddButton({listId, boardId}:{listId:string,boardId:string}) {
   if (isEditing) {
     return (
       <>
-      <div className="mt-2 sticky bottom-0 z-[1000] bg-slate-700 rounded-md" >
+      <div className="mt-2 sticky bottom-0 z-[100] bg-slate-700 rounded-md" >
 
       
       <form
@@ -99,7 +99,7 @@ function CardAddButton({listId, boardId}:{listId:string,boardId:string}) {
 
   return (
     <>
-       <Button onClick={() => setIsEditing(true)} variant={"ghost"} className="flex mt-2 w-full text-slate-100 sticky bottom-0 z-[1000] bg-slate-700 rounded-t-none items-center justify-center text-sm font-semibold space-x-2"><Plus size={12}></Plus> Add card</Button>
+       <Button onClick={() => setIsEditing(true)} variant={"ghost"} className="flex mt-2 w-full text-slate-100 sticky bottom-0  bg-slate-700 rounded-t-none items-center justify-center text-sm font-semibold space-x-2"><Plus size={12}></Plus> Add card</Button>
       
     </>
   );

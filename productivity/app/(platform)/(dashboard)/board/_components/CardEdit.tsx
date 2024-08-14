@@ -39,7 +39,7 @@ export default function CardEdit({cardId, list}:{cardId:string, list : {
     <Button onClick={() => DeleteCard(card?.id as string, list?.boardId as string)}  variant={"ghost"} className="rounded-md  hover:text-slate-800 hover:bg-slate-200 p-1 mr-1 h-auto w-auto" ><X size={15}></X></Button>
     </div>
 
-    <textarea onBlur={() => newCardDescSetting(card?.id as string,newCardDesc as string)} value={newCardDesc}  placeholder="Enter card description" onChange={(e) => setNewCardDesc(e.target.value)} className="cardTitle bg-transparent h-[100px]   focus-visible:border-0 focus-visible:ring-0 placeholder:text-slate-300 focus-visible:ring-offset-0 border-none outline-none cardDesc text-xs p-2 text-slate-700 font-semibold w-full " ></textarea>
+    <textarea onBlur={() => newCardDescSetting(card?.id as string,newCardDesc as string)} value={newCardDesc}  placeholder="Enter card description" onChange={(e) => setNewCardDesc(e.target.value)} className="cardTitle bg-transparent h-[100px] overflow-visible   focus-visible:border-0 focus-visible:ring-0 placeholder:text-slate-300 focus-visible:ring-offset-0 border-none outline-none cardDesc text-xs p-2 text-slate-700 font-semibold w-full " ></textarea>
     </>
   )
 }

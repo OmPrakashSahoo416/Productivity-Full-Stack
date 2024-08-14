@@ -39,7 +39,7 @@ export default async function BoardPage({
   return(
     <>
     <div 
-    className="h-full p-5  bg-no-repeat bg-center overflow-x-auto bg-cover"
+    className="h-full p-5  bg-no-repeat bg-center  bg-cover"
       style={{backgroundImage:`url(${board?.imageUrl})`}}>
           
         <div className="lists mt-10   ">
