@@ -1,7 +1,10 @@
 
 import { ReactNode } from "react"
 import BoardNavbar from "../_components/BoardNavbar"
+
 import { FetchBoardUnique } from "@/actions/fetch-board"
+// import { useAuth } from "@clerk/nextjs"
+// import { redirect } from "next/navigation"
 // import { useParams } from "next/navigation"
 
 
@@ -13,23 +16,26 @@ async function BoardLayout ({children, params}: {children:ReactNode, params:{boa
   const boardId = params.boardId
   const board = await FetchBoardUnique(boardId)
 
+
   
   
 
   return (
   <>
+
+    <div className="boardLayout w-full  ">
+
+          <div className="boardnavbar ">
+            <BoardNavbar board = {board}></BoardNavbar>
+            
+          </div>
+
+          <div className="w-full h-full ">
+          {children}
+          </div>
+    </div>
+ 
   
-  <div className="boardLayout w-full  ">
-
-        <div className="boardnavbar ">
-          <BoardNavbar board = {board}></BoardNavbar>
-          
-        </div>
-
-        <div className="w-full ">
-        {children}
-        </div>
-  </div>
   </>
   )
 }

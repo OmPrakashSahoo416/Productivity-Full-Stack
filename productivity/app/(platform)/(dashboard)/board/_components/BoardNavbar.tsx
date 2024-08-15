@@ -28,7 +28,7 @@ export default function BoardNavbar({
 
   return (
     <>
-      <div className="BoardNavbar absolute bg-slate-600/5  px-10 flex items-center justify-between w-full h-[50px] backdrop-blur-sm ">
+      <div className="BoardNavbar absolute bg-slate-600/5  px-10 space-x-2 flex items-center justify-start w-full h-[50px] backdrop-blur-sm ">
         <div className="boardTitle">
           <Input
             onBlur={() =>

@@ -19,6 +19,7 @@ import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
 // import { UpdateBoardList } from "@/actions/update-board";
 import { db } from "@/lib/db";
 import { UpdateListOrder } from "@/actions/update-list";
+import { toast } from "@/components/ui/use-toast";
 
 function ListReorderingServerAction(newList: List[]) {
   newList.forEach(async (list) => {
@@ -31,6 +32,10 @@ function CardReorderingServerActionSelf(newCards: Card[]) {
   newCards.forEach(async (card) => {
     const data = await UpdateCardOrder(card.id, card.order);
   });
+}
+
+async function CardReorderingServerActionInter (movedCard : any, destination : any) {
+  const data = await UpdateCardListId(movedCard.id, destination.droppableId);
 }
 
 // important generalized reordering logic in case of dnd ======
@@ -82,6 +87,10 @@ function ListComponent({
 
       // server update
       ListReorderingServerAction(lists);
+      toast({
+        title: "List reordered successfully",
+        className: "bg-rose-600 text-slate-100",
+      });
     }
 
     if (type == "card") {
@@ -112,6 +121,11 @@ function ListComponent({
 
         //server action
         CardReorderingServerActionSelf(newCards);
+        toast({
+          title: "Cards reordered successfully",
+          className: "bg-rose-600 text-slate-100",
+        });
+
       } else {
         // get the moved card
         const [movedCard] = sourceList.cards.splice(source.index, 1);
@@ -119,7 +133,8 @@ function ListComponent({
         // add the moved card to new destination list ==> droppable id is list id
         movedCard.listId = destination.droppableId;
         // update the list id in backend
-        UpdateCardListId(movedCard.id, destination.droppableId);
+        CardReorderingServerActionInter(movedCard, destination)
+        // UpdateCardListId(movedCard.id, destination.droppableId);
         //===========================================================================
 
         // adding the movedCard at the correct index in destination list
@@ -135,6 +150,11 @@ function ListComponent({
         // change the order of all the cards in both source and destination list &&
         CardReorderingServerActionSelf(sourceList?.cards as Card[]);
         CardReorderingServerActionSelf(destinationList?.cards as Card[]);
+
+        toast({
+          title: "Cards reordered successfully",
+          className: "bg-rose-600 text-slate-100",
+        });
 
         // change the order and listId of moved card only
       }
@@ -155,7 +175,7 @@ function ListComponent({
             <div
               {...provided.droppableProps}
               ref={provided.innerRef}
-              className="listComponent flex items-start h-screen  space-x-5"
+              className="listComponent flex items-start h-full  space-x-5"
             >
               {/* lists array and at the end of lists a add button */}
               {lists.map((list, index) => {
@@ -167,11 +187,11 @@ function ListComponent({
                           key={list?.id}
                           {...provided.draggableProps}
                           ref={provided.innerRef}
-                          className="uniqueList space-y-5 h-auto rounded-md  shrink-0 drop-shadow-md w-[280px] bg-slate-300/70  flex items-center flex-col "
+                          className="uniqueList space-y-5 h-auto rounded-md shrink-0 drop-shadow-md w-[280px] bg-slate-300/70  flex items-center flex-col "
                         >
                           <div
                             {...provided.dragHandleProps}
-                            className="w-full bg-slate-500 text-slate-100 rounded-md  flex items-center"
+                            className="w-full bg-slate-500 drop-shadow-md text-slate-100 rounded-t-md  flex items-center"
                           >
                             <p className="p-3 text-center">::</p>
 

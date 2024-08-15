@@ -1,6 +1,7 @@
 
 import { FetchBoardUnique } from "@/actions/fetch-board"
 import { db } from "@/lib/db"
+import { RedirectToSignIn, RedirectToSignUp, SignedIn, SignedOut } from "@clerk/nextjs"
 import ListComponent from "../_components/ListComponent"
 
 
@@ -38,17 +39,23 @@ export default async function BoardPage({
 
   return(
     <>
-    <div 
-    className="h-full p-5  bg-no-repeat bg-center  bg-cover"
-      style={{backgroundImage:`url(${board?.imageUrl})`}}>
-          
-        <div className="lists mt-10   ">
+    <SignedIn>
+      
+      <div 
+      className="h-screen min-w-full p-5 max-w-fit bg-no-repeat bg-center  bg-cover"
+        style={{backgroundImage:`url(${board?.imageUrl})`}}>
+            
+          <div className="lists mt-10   h-full ">
 
-          <ListComponent boardId={boardId} lists={lists}></ListComponent>
+            <ListComponent boardId={boardId} lists={lists}></ListComponent>
+
+          </div>
 
         </div>
-
-      </div>
+    </SignedIn>
+    <SignedOut>
+      <RedirectToSignIn redirectUrl={'/sign-in'}></RedirectToSignIn>
+    </SignedOut>
     </> 
   )
 }
