@@ -101,16 +101,16 @@ function ListComponent({
 
       // checking if they contain list or not
       if (!sourceList?.cards) {
-        sourceList.cards = [];
+        sourceList!.cards = [];
       }
       if (!destinationList?.cards) {
-        destinationList.cards = [];
+        destinationList!.cards = [];
       }
 
       // 2 cases moving in same list or in different lists
       if (source.droppableId == destination.droppableId) {
         const newCards = reorder(
-          sourceList.cards,
+          sourceList!.cards,
           source.index,
           destination.index
         );
@@ -118,7 +118,7 @@ function ListComponent({
         newCards.forEach((card, index) => (card.order = index));
 
         
-        sourceList.cards = newCards; // local state update
+        sourceList!.cards = newCards; // local state update
 
         //server action
         CardReorderingServerActionSelf(newCards);
@@ -129,7 +129,7 @@ function ListComponent({
 
       } else {
         // get the moved card
-        const [movedCard] = sourceList.cards.splice(source.index, 1);
+        const [movedCard] = sourceList!.cards.splice(source.index, 1);
 
         // add the moved card to new destination list ==> droppable id is list id
         movedCard.listId = destination.droppableId;

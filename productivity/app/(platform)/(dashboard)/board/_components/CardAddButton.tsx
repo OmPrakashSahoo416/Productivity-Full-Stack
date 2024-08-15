@@ -99,7 +99,7 @@ function CardAddButton({listId, boardId}:{listId:string,boardId:string}) {
 
   return (
     <>
-       <Button onClick={() => setIsEditing(true)} variant={"ghost"} className="flex mt-2 w-full text-slate-100 sticky bottom-0   rounded-t-none items-center justify-center text-xs font-semibold space-x-2"><Plus size={12}></Plus> Add card</Button>
+       <Button onClick={() => setIsEditing(true)} variant={"ghost"} className="flex mt-2 w-full text-slate-800 sticky bottom-0  rounded-t-none items-center justify-center text-xs font-semibold space-x-2"><Plus size={12}></Plus> Add card</Button>
       
     </>
   );
