@@ -3,7 +3,7 @@ import { clerkMiddleware } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 
 
-// change this after deployment 
+// TODO:change this after deployment 
 const landingUrl:string = "http://localhost:3000/"
 
 export default clerkMiddleware((auth,req) => {

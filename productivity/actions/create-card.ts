@@ -45,3 +45,46 @@ export async function CreateCard(formData:FormData) {
 
 
 }
+export async function CreateCardCopy({newtitle, newdesc, newlistId, newboardId}:{newtitle:string, newdesc:string,
+  newlistId:string, newboardId:string
+}) {
+
+  const title : string = newtitle + " - Copy"
+  const desc : string = newdesc
+  const listId : string = newlistId 
+  const boardId : string = newboardId
+  
+      
+      // fetch the last list then assign the new order of the list 
+  const lastCard = await db.card.findFirst({
+    where:{
+      listId:listId
+    }, 
+    orderBy:{
+      order:"desc"
+    }
+  })
+
+  const newOrder = lastCard ? lastCard.order + 1 : 1
+
+  
+
+  const newCard = await db.card.create({
+    data:{
+      title:title,
+      description:desc,
+      order:newOrder,
+      listId:listId
+
+    }
+    
+  })
+
+  console.log(newCard)
+
+  revalidatePath(`/board/${boardId}`)
+
+  
+
+
+}

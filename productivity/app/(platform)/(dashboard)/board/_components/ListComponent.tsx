@@ -236,6 +236,7 @@ function ListComponent({
                                                 <CardEdit
                                                   cardId={card.id}
                                                   list={list}
+                                                  
                                                 >
                                                   <p
                                                     {...provided.dragHandleProps}
