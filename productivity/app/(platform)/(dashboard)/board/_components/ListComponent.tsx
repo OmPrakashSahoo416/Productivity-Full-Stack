@@ -12,9 +12,19 @@ import AddListComponent from "./AddListComponent";
 import { UpdateCardTitle } from "@/actions/update-card";
 import CardEdit from "./CardEdit";
 import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
-import { UpdateBoardList } from "@/actions/update-board";
+// import { UpdateBoardList } from "@/actions/update-board";
 import { db } from "@/lib/db";
+import { UpdateListOrder } from "@/actions/update-list";
 
+
+function ListReorderingServerAction(newList:List[]) {
+
+  newList.forEach(async (list) => {
+    const data = await UpdateListOrder(list.id, list.order)
+  })
+
+
+}
 
 // important generalized reordering logic in case of dnd ======
 function reorder<T>(list : T[], startInd:number, endInd:number) {
@@ -73,13 +83,11 @@ function ListComponent({
         )
       })
 
-      // lists = newList // changing local state
+      lists = newList // changing local state
+
       // server update
-      // UpdateBoardList(boardId, newList)
-      
-      
-
-
+      ListReorderingServerAction(lists) 
+ 
     }
 
     if (type == "card") {
@@ -166,7 +174,7 @@ function ListComponent({
                         key={list?.id}
                         {...provided.draggableProps}
                         ref={provided.innerRef}
-                        className="uniqueList space-y-2 h-auto rounded-md  shrink-0 drop-shadow-md w-[280px] bg-slate-400/70  flex items-center flex-col "
+                        className="uniqueList space-y-2 h-auto rounded-md   shrink-0 drop-shadow-md w-[280px] bg-slate-400/70  flex items-center flex-col "
                       >
                         <div {...provided.dragHandleProps} className="w-full bg-slate-700 text-slate-100  flex items-center">
                           <p
@@ -207,9 +215,10 @@ function ListComponent({
                                         ref={provided.innerRef}
                                         {...provided.draggableProps}
                                         onDrag={() => console.log("Dragging")}
+                                        
                                         className={`rounded-t-md !top-auto !left-auto space-y-1  w-full flex flex-col justify-center items-center bg-slate-100 ${
                                           snapshot.isDragging
-                                            ? "hover:cursor-grabbing  " 
+                                            ? " hover:cursor-grabbing opacity-75 " 
                                             : "  "
                                         }`}
                                       >

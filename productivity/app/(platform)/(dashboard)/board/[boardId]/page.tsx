@@ -31,7 +31,7 @@ export default async function BoardPage({
       }
     },
     orderBy:{
-      order:"desc"
+      order:"asc"
     }
   })
 
