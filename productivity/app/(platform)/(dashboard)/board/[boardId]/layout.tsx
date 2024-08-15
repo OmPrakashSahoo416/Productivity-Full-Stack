@@ -23,14 +23,14 @@ async function BoardLayout ({children, params}: {children:ReactNode, params:{boa
   return (
   <>
 
-    <div className="boardLayout w-full  ">
+    <div className="boardLayout min-w-full w-fit ">
 
           <div className="boardnavbar ">
             <BoardNavbar board = {board}></BoardNavbar>
             
           </div>
 
-          <div className="w-full h-full ">
+          <div className="w-fit min-w-full h-full ">
           {children}
           </div>
     </div>

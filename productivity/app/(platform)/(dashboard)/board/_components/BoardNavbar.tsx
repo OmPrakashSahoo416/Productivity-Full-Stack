@@ -28,7 +28,7 @@ export default function BoardNavbar({
 
   return (
     <>
-      <div className="BoardNavbar absolute bg-slate-600/5  px-10 space-x-2 flex items-center justify-start w-full h-[50px] backdrop-blur-sm ">
+      <div className="BoardNavbar absolute bg-slate-600/5  px-10 space-x-2 flex items-center justify-between w-full h-[50px] backdrop-blur-sm ">
         <div className="boardTitle">
           <Input
             onBlur={() =>
@@ -36,14 +36,14 @@ export default function BoardNavbar({
             }
             value={newBoardTitle}
             onChange={(e) => setNewBoardTitle(e.target.value)}
-            className="text-slate-50 bg-transparent font-bold focus-visible:border-0 focus-visible:ring-0 focus-visible:ring-offset-0 border-none outline-none"
+            className="text-slate-50 bg-transparent text-lg font-bold focus-visible:border-0 focus-visible:ring-0 focus-visible:ring-offset-0 border-none outline-none"
           ></Input>
         </div>
         <div className="deleteButton">
           <Button
             onClick={() => DeleteBoard(board?.id as string)}
-            className="bg-red-500 text-xs hover:bg-red-800"
-            size={"sm"}
+            className="bg-red-500 text-xs hover:bg-red-600"
+            size={"sm"} 
           >
             Delete Board
           </Button>

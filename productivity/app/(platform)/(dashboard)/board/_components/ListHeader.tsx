@@ -22,9 +22,9 @@ function ListHeader({list} : {list:List}) {
 
   return (
     <>
-    <div className="listTitle  w-full flex items-center justify-normal sticky top-0 bg-slate-500 ">
+    <div className="listTitle  w-full flex items-center justify-normal sticky top-0 bg-slate-400 ">
           <Input onBlur={() => newListTitleSetting(list?.id as string,newListTitle as string)} value={newListTitle} placeholder="Enter list title" onChange={(e) => setNewListTitle(e.target.value)} className="text-slate-50 bg-transparent py-1 px-2 font-bold focus-visible:border-0 focus-visible:ring-0 placeholder:text-slate-300 focus-visible:ring-offset-0 border-none outline-none" ></Input>
-          <Button onClick={() => DeleteList(list?.id, list?.boardId)}  variant={"ghost"} className="rounded-md hover:bg-rose-500 hover:text-slate-100 p-1 mr-1 h-auto w-auto" ><X size={15}></X></Button>
+          <Button onClick={() => DeleteList(list?.id, list?.boardId)}  variant={"ghost"} className="rounded-md hover:bg-rose-500 hover:text-slate-100 text-xs border border-rose-300 p-1 mr-1 h-auto w-auto" >Delete</Button>
 
         </div>
     </>

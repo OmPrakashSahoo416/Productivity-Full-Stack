@@ -42,7 +42,7 @@ export default async function BoardPage({
     <SignedIn>
       
       <div 
-      className="h-screen min-w-full p-5 max-w-fit bg-no-repeat bg-center  bg-cover"
+      className="h-screen min-w-full p-5 w-fit bg-no-repeat bg-center  bg-cover"
         style={{backgroundImage:`url(${board?.imageUrl})`}}>
             
           <div className="lists mt-10   h-full ">

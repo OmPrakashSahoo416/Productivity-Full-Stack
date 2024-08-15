@@ -117,6 +117,7 @@ function ListComponent({
 
         newCards.forEach((card, index) => (card.order = index));
 
+        
         sourceList.cards = newCards; // local state update
 
         //server action
@@ -187,13 +188,13 @@ function ListComponent({
                           key={list?.id}
                           {...provided.draggableProps}
                           ref={provided.innerRef}
-                          className="uniqueList space-y-5 h-auto rounded-md shrink-0 drop-shadow-md w-[280px] bg-slate-300/70  flex items-center flex-col "
+                          className="uniqueList space-y-5 h-auto rounded-md shrink-0 drop-shadow-md w-[280px] bg-slate-300/90  flex items-center flex-col "
                         >
                           <div
-                            {...provided.dragHandleProps}
-                            className="w-full bg-slate-500 drop-shadow-md text-slate-100 rounded-t-md  flex items-center"
+                            
+                            className="w-full bg-slate-400 drop-shadow-md text-slate-100 rounded-t-md  flex items-center"
                           >
-                            <p className="p-3 text-center">::</p>
+                            <p {...provided.dragHandleProps} className="p-3 text-center font-bold hover:cursor-grab">::</p>
 
                             <ListHeader list={list}></ListHeader>
                           </div>
@@ -205,7 +206,7 @@ function ListComponent({
                               <div
                                 ref={provided.innerRef}
                                 {...provided.droppableProps}
-                                className="w-full px-1 space-y-5 hover:drop-shadow-md "
+                                className="w-full px-1 space-y-5  "
                               >
                                 {list.cards.map((card, index) => {
                                   return (
@@ -225,7 +226,7 @@ function ListComponent({
                                               onDrag={() =>
                                                 console.log("Dragging")
                                               }
-                                              className={`rounded-t-md !top-auto !left-auto space-y-1  w-full flex flex-col justify-center items-center bg-slate-100 ${
+                                              className={`rounded-t-md !top-auto !left-auto space-y-1  w-full flex flex-col hover:drop-shadow-md justify-center items-center bg-slate-100 ${
                                                 snapshot.isDragging
                                                   ? " hover:cursor-grabbing opacity-75 "
                                                   : "  "
@@ -238,7 +239,7 @@ function ListComponent({
                                                 >
                                                   <p
                                                     {...provided.dragHandleProps}
-                                                    className="p-3 text-center"
+                                                    className="p-3 text-center font-bold hover:cursor-grab"
                                                   >
                                                     ::
                                                   </p>
