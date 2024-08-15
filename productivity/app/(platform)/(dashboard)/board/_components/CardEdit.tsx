@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card } from "@prisma/client";
 import { X } from "lucide-react";
-import { useState } from "react";
+import { ReactNode, useState } from "react";
 
 async function newCardTitleSetting(cardId:string,newTitle:string) {
   const newCardWithTitle = await UpdateCardTitle(cardId, newTitle)
@@ -15,14 +15,14 @@ async function newCardDescSetting(cardId:string,newDesc:string) {
   
 }
 
-export default function CardEdit({cardId, list}:{cardId:string, list : {
+export default function CardEdit({cardId, list, children}:{cardId:string, list : {
   cards: Card[];
 } & {
   id: string;
   title: string;
   order: number;
   boardId: string;
-}}) {
+}, children:ReactNode}) {
 
   const card = list.cards.find((card) => card.id == cardId)
 
@@ -32,14 +32,15 @@ export default function CardEdit({cardId, list}:{cardId:string, list : {
 
   return (
     <>
-    <div className="cardHeader flex bg-rose-500 justify-between rounded-t-md items-center">
+    <div className="cardHeader flex border-b border-rose-600  justify-between rounded-t-md items-center">
+      {children}
 
-    <Input onBlur={() => newCardTitleSetting(card?.id as string,newCardTitle as string)} value={newCardTitle}  placeholder="Enter card title" onChange={(e) => setNewCardTitle(e.target.value)} className="cardTitle bg-transparent rounded-t-md  focus-visible:border-0 focus-visible:ring-0 placeholder:text-slate-300 focus-visible:ring-offset-0 border-none outline-none cardTitle text-sm p-2 rounded-b-none text-slate-100  font-semibold w-full" ></Input>
+    <Input onBlur={() => newCardTitleSetting(card?.id as string,newCardTitle as string)} value={newCardTitle}  placeholder="Enter card title" onChange={(e) => setNewCardTitle(e.target.value)} className="cardTitle bg-transparent rounded-t-md  focus-visible:border-0 focus-visible:ring-0 placeholder:text-slate-500 focus-visible:ring-offset-0 border-none outline-none cardTitle text-sm p-1  rounded-b-none text-slate-700  font-semibold w-full" ></Input>
 
     <Button onClick={() => DeleteCard(card?.id as string, list?.boardId as string)}  variant={"ghost"} className="rounded-md  hover:text-slate-800 hover:bg-slate-200 p-1 mr-1 h-auto w-auto" ><X size={15}></X></Button>
     </div>
 
-    <textarea onBlur={() => newCardDescSetting(card?.id as string,newCardDesc as string)} value={newCardDesc}  placeholder="Enter card description" onChange={(e) => setNewCardDesc(e.target.value)} className="cardTitle bg-transparent h-[100px] overflow-visible   focus-visible:border-0 focus-visible:ring-0 placeholder:text-slate-300 focus-visible:ring-offset-0 border-none outline-none cardDesc text-xs p-2 text-slate-700 font-semibold w-full " ></textarea>
+    <textarea onBlur={() => newCardDescSetting(card?.id as string,newCardDesc as string)} value={newCardDesc}  placeholder="Enter card description" onChange={(e) => setNewCardDesc(e.target.value)} className="cardTitle leading-relaxed bg-transparent h-[50px] overflow-visible   focus-visible:border-0 focus-visible:ring-0 placeholder:text-slate-300 focus-visible:ring-offset-0 border-none outline-none cardDesc text-xs p-2 text-slate-700 font-semibold w-full " ></textarea>
     </>
   )
 }

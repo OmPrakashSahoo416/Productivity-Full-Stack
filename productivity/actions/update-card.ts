@@ -26,3 +26,26 @@ export async function UpdateCardDesc(cardId:string,newDesc : string) {
   return data;
 
 }
+export async function UpdateCardOrder(cardId:string,newOrder : number) {
+  
+  
+  const data = await db.card.update({ where:{id:cardId}, data:{
+    order:newOrder
+  }})
+
+  console.log("Updating card complete")
+  return data;
+
+}
+export async function UpdateCardListId(cardId:string,newListId : string) {
+  
+  
+  const data = await db.card.update({ where:{id:cardId}, data:{
+    listId:newListId,
+    
+  }})
+
+  console.log("Updating card complete")
+  return data;
+
+}
