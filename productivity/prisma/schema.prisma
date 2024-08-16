@@ -15,14 +15,6 @@ datasource db {
   relationMode = "prisma"
 }
 
-model User {
-  id    String  @id @default(cuid())
-  name  String?
-  email String? @unique
-
-  @@map(name: "users")
-}
-
 // boards of particular organization 
 model Board {
   id       String @id @default(cuid())
@@ -70,4 +62,36 @@ model Card {
   listId String
 
   @@index([listId])
+}
+
+//activity logs in the organization page
+
+// types of activity 
+enum ActivityType {
+  CREATE
+  UPDATE
+  DELETE
+}
+
+// type of object
+enum ActivityObject {
+  BOARD
+  CARD
+  LIST
+}
+
+// using the orgId to show in its activity page with user who did this and what he did to any obj
+model ActivityLog {
+  id String @id @default(uuid())
+
+  orgId String
+
+  ActivityType     ActivityType
+  ActivityObject   ActivityObject
+  ActivityObjectId String
+
+  userName  String
+  userImage String @db.Text()
+
+  createdAt DateTime @default(now())
 }

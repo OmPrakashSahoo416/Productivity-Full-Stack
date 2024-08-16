@@ -1,6 +1,6 @@
 "use client";
 import { useOrganization, useOrganizationList } from "@clerk/nextjs";
-import { House, LayoutGrid, Plus, Settings, Sparkles, Square, Users } from "lucide-react";
+import { ActivityIcon, House, LayoutGrid, Plus, Settings, Sparkles, Square } from "lucide-react";
 import { useLocalStorage } from "usehooks-ts";
 import {
   Accordion,
@@ -77,8 +77,8 @@ function SideBar() {
 
                   </a>
  
-                  <a href={`/organization/${org.organization.id}/members`}>
-                  <Button variant={"ghost"} size={"left"} className="w-full mb-2   focus:bg-slate-300"><Users size={"20px"} className="mr-2" />Members</Button>
+                  <a href={`/organization/${org.organization.id}/activity`}>
+                  <Button variant={"ghost"} size={"left"} className="w-full mb-2   focus:bg-slate-300"><ActivityIcon size={"20px"} className="mr-2" />Activity</Button>
                   </a>
                   <a href={`/organization/${org.organization.id}/settings`}>
                   <Button variant={"ghost"} size={"left"} className="w-full mb-2 focus:bg-slate-300"><Settings size={"20px"} className="mr-2"  />Settings</Button> </a>
