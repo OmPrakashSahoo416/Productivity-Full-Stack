@@ -32,7 +32,7 @@ export async function UpdateCardTitle(cardId:string,newTitle : string) {
   if (user) {
 
     const newActivty = await CreateActivity({orgId:board?.org_id as string, activityType:ActivityType.UPDATE,
-      activityObject:ActivityObject.CARD,activityObjectId:data!.id, userName:user!.fullName as string, userImage:user!.imageUrl as string
+      activityObject:ActivityObject.CARD,activityObjectId:data!.id, userName:user!.fullName as string, userImage:user!.imageUrl as string, title:data.title
     })
   }
 
@@ -65,7 +65,7 @@ export async function UpdateCardDesc(cardId:string,newDesc : string) {
   if (user) {
 
     const newActivty = await CreateActivity({orgId:board?.org_id as string, activityType:ActivityType.UPDATE,
-      activityObject:ActivityObject.CARD,activityObjectId:data!.id, userName:user!.fullName as string, userImage:user!.imageUrl as string
+      activityObject:ActivityObject.CARD,activityObjectId:data!.id, userName:user!.fullName as string, userImage:user!.imageUrl as string, title:data.title
     })
   }
 
@@ -98,7 +98,7 @@ export async function UpdateCardOrder(cardId:string,newOrder : number) {
   if (user) {
 
     const newActivty = await CreateActivity({orgId:board?.org_id as string, activityType:ActivityType.UPDATE,
-      activityObject:ActivityObject.CARD,activityObjectId:data!.id, userName:user!.fullName as string, userImage:user!.imageUrl as string
+      activityObject:ActivityObject.CARD,activityObjectId:data!.id, userName:user!.fullName as string, userImage:user!.imageUrl as string, title:data.title
     })
   }
 
@@ -132,7 +132,7 @@ export async function UpdateCardListId(cardId:string,newListId : string) {
   if (user) {
 
     const newActivty = await CreateActivity({orgId:board?.org_id as string, activityType:ActivityType.UPDATE,
-      activityObject:ActivityObject.CARD,activityObjectId:data!.id, userName:user!.fullName as string, userImage:user!.imageUrl as string
+      activityObject:ActivityObject.CARD,activityObjectId:data!.id, userName:user!.fullName as string, userImage:user!.imageUrl as string, title:data.title
     })
   }
 

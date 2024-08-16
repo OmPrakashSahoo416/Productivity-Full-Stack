@@ -36,7 +36,7 @@ export async function CreateBoard(formData:FormData) {
   if (user) {
 
     const newActivty = await CreateActivity({orgId:org_id, activityType:ActivityType.CREATE,
-      activityObject:ActivityObject.BOARD,activityObjectId:newBoard.id, userName:user!.fullName as string, userImage:user!.imageUrl as string
+      activityObject:ActivityObject.BOARD,activityObjectId:newBoard.id, userName:user!.fullName as string, userImage:user!.imageUrl as string, title:newBoard.title
     })
   }
 

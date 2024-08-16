@@ -53,7 +53,7 @@ export async function CreateCard(formData:FormData) {
   if (user) {
 
     const newActivty = await CreateActivity({orgId:board?.org_id as string, activityType:ActivityType.CREATE,
-      activityObject:ActivityObject.CARD,activityObjectId:newCard.id, userName:user!.fullName as string, userImage:user!.imageUrl as string
+      activityObject:ActivityObject.CARD,activityObjectId:newCard.id, userName:user!.fullName as string, userImage:user!.imageUrl as string, title:newCard.title
     })
   }
 
@@ -113,7 +113,7 @@ export async function CreateCardCopy({newtitle, newdesc, newlistId, newboardId}:
   if (user) {
 
     const newActivty = await CreateActivity({orgId:board?.org_id as string, activityType:ActivityType.CREATE,
-      activityObject:ActivityObject.CARD,activityObjectId:newCard.id, userName:user!.fullName as string, userImage:user!.imageUrl as string
+      activityObject:ActivityObject.CARD,activityObjectId:newCard.id, userName:user!.fullName as string, userImage:user!.imageUrl as string,title:newCard.title
     })
   }
 

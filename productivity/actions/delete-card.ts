@@ -35,7 +35,7 @@ export async function DeleteCard(cardId:string, boardId:string) {
   if (user) {
 
     const newActivty = await CreateActivity({orgId:board?.org_id as string, activityType:ActivityType.DELETE,
-      activityObject:ActivityObject.CARD,activityObjectId:deleteCard!.id, userName:user!.fullName as string, userImage:user!.imageUrl as string
+      activityObject:ActivityObject.CARD,activityObjectId:deleteCard!.id, userName:user!.fullName as string, userImage:user!.imageUrl as string, title:deleteCard.title
     })
   }
 

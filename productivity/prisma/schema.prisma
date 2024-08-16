@@ -89,6 +89,7 @@ model ActivityLog {
   ActivityType     ActivityType
   ActivityObject   ActivityObject
   ActivityObjectId String
+  title String
 
   userName  String
   userImage String @db.Text()

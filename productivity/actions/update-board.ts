@@ -28,7 +28,7 @@ export async function UpdateBoardTitle(boardId:string,newTitle : string) {
   if (user) {
 
     const newActivty = await CreateActivity({orgId:board?.org_id as string, activityType:ActivityType.UPDATE,
-      activityObject:ActivityObject.BOARD,activityObjectId:data!.id, userName:user!.fullName as string, userImage:user!.imageUrl as string
+      activityObject:ActivityObject.BOARD,activityObjectId:data!.id, userName:user!.fullName as string, userImage:user!.imageUrl as string, title:newTitle
     })
   }
 

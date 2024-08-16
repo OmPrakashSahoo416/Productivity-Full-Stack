@@ -27,7 +27,7 @@ export async function UpdateListTitle(listId:string,newTitle : string) {
   if (user) {
 
     const newActivty = await CreateActivity({orgId:board?.org_id as string, activityType:ActivityType.UPDATE,
-      activityObject:ActivityObject.LIST,activityObjectId:data!.id, userName:user!.fullName as string, userImage:user!.imageUrl as string
+      activityObject:ActivityObject.LIST,activityObjectId:data!.id, userName:user!.fullName as string, userImage:user!.imageUrl as string, title:newTitle
     })
   }
 
@@ -55,7 +55,7 @@ export async function UpdateListOrder(listId:string, newOrder : number) {
   if (user) {
 
     const newActivty = await CreateActivity({orgId:board?.org_id as string, activityType:ActivityType.UPDATE,
-      activityObject:ActivityObject.LIST,activityObjectId:data!.id, userName:user!.fullName as string, userImage:user!.imageUrl as string
+      activityObject:ActivityObject.LIST,activityObjectId:data!.id, userName:user!.fullName as string, userImage:user!.imageUrl as string, title:data.title
     })
   }
 

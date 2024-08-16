@@ -29,7 +29,7 @@ export async function DeleteList(listId:string, boardId:string) {
   if (user) {
 
     const newActivty = await CreateActivity({orgId:board?.org_id as string, activityType:ActivityType.DELETE,
-      activityObject:ActivityObject.LIST,activityObjectId:deleteList!.id, userName:user!.fullName as string, userImage:user!.imageUrl as string
+      activityObject:ActivityObject.LIST,activityObjectId:deleteList!.id, userName:user!.fullName as string, userImage:user!.imageUrl as string, title:deleteList.title
     })
   }
 

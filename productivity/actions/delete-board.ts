@@ -21,7 +21,7 @@ export async function DeleteBoard(boardId:string) {
   if (user) {
 
     const newActivty = await CreateActivity({orgId:deleteUser?.org_id as string, activityType:ActivityType.DELETE,
-      activityObject:ActivityObject.BOARD,activityObjectId:deleteUser!.id, userName:user!.fullName as string, userImage:user!.imageUrl as string
+      activityObject:ActivityObject.BOARD,activityObjectId:deleteUser!.id, userName:user!.fullName as string, userImage:user!.imageUrl as string, title:deleteUser.title
     })
   }
 

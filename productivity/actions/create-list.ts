@@ -45,7 +45,7 @@ export async function CreateList(formData:FormData) {
   if (user) {
 
     const newActivty = await CreateActivity({orgId:board?.org_id as string, activityType:ActivityType.CREATE,
-      activityObject:ActivityObject.LIST,activityObjectId:newList.id, userName:user!.fullName as string, userImage:user!.imageUrl as string
+      activityObject:ActivityObject.LIST,activityObjectId:newList.id, userName:user!.fullName as string, userImage:user!.imageUrl as string, title:newList.title
     })
   }
 

@@ -1,6 +1,6 @@
 "use client"
 import { FetchActivity } from "@/actions/fetch-activity"
-import { fetchTitleGeneric } from "@/actions/fetch-title-generic"
+// import { fetchTitleGeneric } from "@/actions/fetch-title-generic"
 import { db } from "@/lib/db"
 import { ActivityLog } from "@prisma/client"
 import { useParams } from "next/navigation"
@@ -53,7 +53,7 @@ import { useEffect, useState } from "react"
               <div className="flex content flex-col">
                 <div className="flex items-center space-x-1">
                 <div className="username font-bold text-sm text-slate-600">{activity.userName}</div>
-                <div className="contentmessage text-sm font-medium text-slate-600">{`${activity.ActivityType.toLowerCase()}d ${activity.ActivityObject.toLowerCase()} `}</div>
+                <div className="contentmessage text-sm font-medium text-slate-600">{`${activity.ActivityType.toLowerCase()}d ${activity.ActivityObject.toLowerCase()} "${activity.title}"`}</div>
 
                 </div>
                 <div className="updatedtime text-xs text-slate-500">
