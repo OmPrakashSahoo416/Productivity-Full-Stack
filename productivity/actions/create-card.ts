@@ -3,8 +3,14 @@
 import { db } from "@/lib/db"
 // import { redirect } from "next/navigation"
 import { revalidatePath } from "next/cache";
+import { CreateActivity } from "./create-activity";
+import { ActivityObject, ActivityType } from "@prisma/client";
+import { currentUser } from "@clerk/nextjs/server";
 
 export async function CreateCard(formData:FormData) {
+
+  const user = await currentUser()
+
 
   const title : string = formData.get("title") as string
   const desc : string = formData.get("desc") as string
@@ -22,6 +28,13 @@ export async function CreateCard(formData:FormData) {
     }
   })
 
+  const board = await db.board.findUnique({
+    where:{
+      id:boardId
+    }
+    
+  })
+
   const newOrder = lastCard ? lastCard.order + 1 : 1
 
   
@@ -37,6 +50,13 @@ export async function CreateCard(formData:FormData) {
     
   })
 
+  if (user) {
+
+    const newActivty = await CreateActivity({orgId:board?.org_id as string, activityType:ActivityType.CREATE,
+      activityObject:ActivityObject.CARD,activityObjectId:newCard.id, userName:user!.fullName as string, userImage:user!.imageUrl as string
+    })
+  }
+
   console.log(newCard)
 
   revalidatePath(`/board/${boardId}`)
@@ -48,6 +68,9 @@ export async function CreateCard(formData:FormData) {
 export async function CreateCardCopy({newtitle, newdesc, newlistId, newboardId}:{newtitle:string, newdesc:string,
   newlistId:string, newboardId:string
 }) {
+
+  const user = await currentUser()
+
 
   const title : string = newtitle + " - Copy"
   const desc : string = newdesc
@@ -79,6 +102,20 @@ export async function CreateCardCopy({newtitle, newdesc, newlistId, newboardId}:
     }
     
   })
+
+  const board = await db.board.findUnique({
+    where:{
+      id:boardId
+    }
+    
+  })
+
+  if (user) {
+
+    const newActivty = await CreateActivity({orgId:board?.org_id as string, activityType:ActivityType.CREATE,
+      activityObject:ActivityObject.CARD,activityObjectId:newCard.id, userName:user!.fullName as string, userImage:user!.imageUrl as string
+    })
+  }
 
   console.log(newCard)
 

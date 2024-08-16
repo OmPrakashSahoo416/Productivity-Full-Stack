@@ -1,7 +1,10 @@
 "use server"
 
 import { db } from "@/lib/db"
+import { currentUser } from "@clerk/nextjs/server"
 import { redirect } from "next/navigation"
+import { CreateActivity } from "./create-activity"
+import { ActivityObject, ActivityType } from "@prisma/client"
 
 
 
@@ -12,6 +15,15 @@ export async function DeleteBoard(boardId:string) {
       id: boardId,
     },
   })
+
+  const user = await currentUser()
+
+  if (user) {
+
+    const newActivty = await CreateActivity({orgId:deleteUser?.org_id as string, activityType:ActivityType.DELETE,
+      activityObject:ActivityObject.BOARD,activityObjectId:deleteUser!.id, userName:user!.fullName as string, userImage:user!.imageUrl as string
+    })
+  }
 
 
 

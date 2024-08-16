@@ -16,6 +16,10 @@ export async function CreateActivity({orgId ,activityType,
   userImage:string
 }) {
 
+  
+
+
+
     console.log("Created activity successfully")
 
     const data = await db.activityLog.create({
@@ -25,7 +29,9 @@ export async function CreateActivity({orgId ,activityType,
         ActivityObject:activityObject,
         ActivityObjectId:activityObjectId,
         userName:userName,
-        userImage:userImage
+        userImage:userImage,
+        
+        
         
       }
     })

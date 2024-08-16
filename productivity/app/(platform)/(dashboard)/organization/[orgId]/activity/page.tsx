@@ -1,14 +1,31 @@
 "use client"
 import { FetchActivity } from "@/actions/fetch-activity"
+import { fetchTitleGeneric } from "@/actions/fetch-title-generic"
+import { db } from "@/lib/db"
 import { ActivityLog } from "@prisma/client"
 import { useParams } from "next/navigation"
 import { useEffect, useState } from "react"
 
+function FetchingActivityTitle(activity:ActivityLog[]) {
+
+  activity.forEach(async (item) => {
+    const type = item.ActivityObject.toLowerCase();
+    const id = item.ActivityObjectId.toString();
+    const title = await fetchTitleGeneric({type:type, id:id})
+    console.log(title)
+
+
+  })
+
+}
 
  function ActivityPage () {
 
+  
+
   const {orgId}:{orgId:string} = useParams()
-  const [activities, setActivities] = useState({data:[] as ActivityLog[], titles: [] as string[]})
+  const [activities, setActivities] = useState([] as ActivityLog[])
+  const [titles, setTitles] = useState([]as string[])
   
  
   useEffect(() => {
@@ -16,36 +33,45 @@ import { useEffect, useState } from "react"
       const activity = await FetchActivity({orgId})
 
       setActivities(activity)
+
+      
       
 
     }
     fetchActivities()
 
   }, [])
-  console.log(activities.titles)
+  FetchingActivityTitle(activities)
+  // console.log(titles)
 
 
   return (
     <>
-    <div className="listofActivities flex flex-col space-y-3">
-      <div className="header text-sm font-bold text-slate-700 mb-5">Activity</div>
+    <div className="header text-sm font-bold text-slate-700 mb-5">Activity</div>
+    <div className="listofActivities flex flex-col h-[500px] overflow-auto space-y-3">
       {
         
-        activities.data.map((activity : ActivityLog, index) => {
+        activities.map((activity : ActivityLog, index) => {
 
           return (
-            <div key={activity.id} className="activity  w-full flex items-center p-2 ">
+            <div key={activity.id} className={"activity rounded-md space-x-3  w-full flex items-center p-2 bg-green-100" 
+              + 
+              (activity.ActivityType.toLowerCase() == "create" ? "  bg-green-100 " : "  ") + 
+              (activity.ActivityType.toLowerCase() == "update" ? " bg-yellow-100 ": "  ") + 
+              (activity.ActivityType.toLowerCase() == "delete" ? " bg-red-100 " : "  ")
+            }>
               <div className="userImage">
+                <img src={activity.userImage} className="h-6 w-6 rounded-full object-cover" alt="" />
 
               </div>
               <div className="flex content flex-col">
                 <div className="flex items-center space-x-1">
                 <div className="username font-bold text-sm text-slate-600">{activity.userName}</div>
-                <div className="contentmessage text-sm font-medium text-slate-600">{`${activity.ActivityType.toLowerCase()}d ${activity.ActivityObject.toLowerCase()} ${activities.titles[index]}`}</div>
+                <div className="contentmessage text-sm font-medium text-slate-600">{`${activity.ActivityType.toLowerCase()}d ${activity.ActivityObject.toLowerCase()} `}</div>
 
                 </div>
                 <div className="updatedtime text-xs text-slate-500">
-                  Tue 20 May 2023
+                  {`${activity.createdAt.toString().slice(3,7)} ${activity.createdAt.getDate()}, ${activity.createdAt.getFullYear()}, ${activity.createdAt.getHours()}:${activity.createdAt.getMinutes()}`}
 
                 </div>
 
