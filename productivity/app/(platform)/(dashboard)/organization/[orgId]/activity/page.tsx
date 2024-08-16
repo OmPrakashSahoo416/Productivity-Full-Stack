@@ -6,18 +6,7 @@ import { ActivityLog } from "@prisma/client"
 import { useParams } from "next/navigation"
 import { useEffect, useState } from "react"
 
-function FetchingActivityTitle(activity:ActivityLog[]) {
 
-  activity.forEach(async (item) => {
-    const type = item.ActivityObject.toLowerCase();
-    const id = item.ActivityObjectId.toString();
-    const title = await fetchTitleGeneric({type:type, id:id})
-    console.log(title)
-
-
-  })
-
-}
 
  function ActivityPage () {
 
@@ -25,7 +14,7 @@ function FetchingActivityTitle(activity:ActivityLog[]) {
 
   const {orgId}:{orgId:string} = useParams()
   const [activities, setActivities] = useState([] as ActivityLog[])
-  const [titles, setTitles] = useState([]as string[])
+  
   
  
   useEffect(() => {
@@ -34,14 +23,11 @@ function FetchingActivityTitle(activity:ActivityLog[]) {
 
       setActivities(activity)
 
-      
-      
-
     }
     fetchActivities()
 
   }, [])
-  FetchingActivityTitle(activities)
+  // FetchingActivityTitle(activities)
   // console.log(titles)
 
 
