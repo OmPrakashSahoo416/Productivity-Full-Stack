@@ -19,12 +19,15 @@ import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useAuth } from "@clerk/nextjs";
+import { db } from "@/lib/db";
+import { SetLimit } from "@/actions/board-limit";
 
 export default function NewBoardDialog({
-  children,
+  children
 }: {
-  children: ReactNode;
+  children: ReactNode
 }) {
+  
   // to fetch the organization id we are using use Params from next js 
   const {orgId} : {orgId : string} = useParams();
   const orgId2 = useAuth().orgId as string
@@ -33,12 +36,21 @@ export default function NewBoardDialog({
   const [images, setImages] = useState<Array<string>>([]);
   const [boardBg, setBoardBg] = useState<string>(""); // selected background for board
   const [imageAuthor, setImageAuthor] = useState<Array<string>>([]); // links to images creater
+  const [count,setCount] = useState(0)
+  
+
+  // console.log(count)
 
   const fetch = async () => {
     try {
       const bg_images_temp:string[] = []
       const bg_authors_temp:string[] = []
       const responseImages = await GetImages();
+      const data = await SetLimit({update:0})
+
+      if(data) {
+        setCount(data.boardCount)
+      }
       // console.log(responseImages)
       if (responseImages) {
         // console.log(responseImages)
@@ -50,6 +62,10 @@ export default function NewBoardDialog({
         setImages(bg_images_temp)
         setImageAuthor(bg_authors_temp)
         // setImages(responseImages)
+        
+        
+        
+        
       } else {
         console.error("Error fetching from unsplash");
       }
@@ -137,10 +153,19 @@ export default function NewBoardDialog({
                 <Button
                 type="submit"
                   onClick={() => {
-                    toast({
-                      title: "Board created successfully",
-                      className: "bg-rose-600 text-slate-100",
-                    });
+                    if(count < 5) {
+
+                      toast({
+                        title: "Board created successfully",
+                        className: "bg-rose-600 text-slate-100",
+                      });
+                    } else {
+                      toast({
+                        title: "Max board limit reached!",
+                        className: "bg-yellow-600 text-slate-100",
+                      });
+
+                    }
                   }}
                   variant={"primary"}
                   className="w-full"

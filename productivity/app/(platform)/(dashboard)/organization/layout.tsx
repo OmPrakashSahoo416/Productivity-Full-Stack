@@ -12,10 +12,11 @@ function OrganizationLayout ({children}: {children:ReactNode}) {
 
   return (
   <>
-  <div role="button" onClick={() =>setMobileSidebar(!mobileSidebar)} className="absolute peer z-[200] w-10 h-10  bg-slate-200 text-rose-600 p-2  flex md:hidden items-center left-0 rounded-r-full">{mobileSidebar?
-  <PanelRightOpen className="h-6 w-6" />:<PanelLeftOpen className="h-6 w-6" />}  </div>
+  <div  role="button"  onClick={() =>setMobileSidebar(!mobileSidebar)} className="absolute peer z-[200] w-12 h-10 mt-5 justify-end  bg-slate-200 text-rose-600 p-2  flex md:hidden items-center left-0 rounded-r-full">{mobileSidebar?
+  <PanelRightOpen className="h-6 w-6 " />:<PanelLeftOpen className="h-6 w-6 " />}  </div>
+
   {mobileSidebar && (
-    <div className={`sideBar absolute z-[100]   pt-10 rounded-r-md bg-slate-200 h-full w-60 `}>
+    <div  className={`sideBar absolute ease-in-out duration-300 z-[100] top-0  pt-24   bg-slate-200 h-full w-60 ${mobileSidebar ? "translate-x-0": " translate-x-full "}`}>
       <SideBar></SideBar>
     </div>
   )}

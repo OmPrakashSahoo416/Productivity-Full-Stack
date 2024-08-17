@@ -96,3 +96,9 @@ model ActivityLog {
 
   createdAt DateTime @default(now())
 }
+
+model OrgLimit {
+  id String @id @default(uuid())
+  orgId String @unique
+  boardCount Int
+}

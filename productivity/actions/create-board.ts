@@ -7,6 +7,7 @@ import { CreateActivity } from "./create-activity";
 import { ActivityObject, ActivityType } from "@prisma/client";
 
 import {currentUser } from '@clerk/nextjs/server'
+import { SetLimit } from "./board-limit";
 
 // import { useAuth } from "@clerk/nextjs";
 
@@ -17,6 +18,13 @@ export async function CreateBoard(formData:FormData) {
   const org_id : string = formData.get("org_id") as string
 
   const user = await currentUser()
+
+  const data = await db.orgLimit.findUnique({where:{orgId:org_id}})
+
+  if(data?.boardCount == 5) {
+    console.error("Maximum board limit reached")
+    return
+  }
   
   
 
@@ -39,6 +47,9 @@ export async function CreateBoard(formData:FormData) {
       activityObject:ActivityObject.BOARD,activityObjectId:newBoard.id, userName:user!.fullName as string, userImage:user!.imageUrl as string, title:newBoard.title
     })
   }
+
+  //set limit 
+  SetLimit({update:1})
 
   // revalidatePath(`organization/${newBoard.org_id}`) Not working here gonna implement somewhere else
 

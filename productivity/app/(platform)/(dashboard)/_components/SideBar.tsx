@@ -40,7 +40,7 @@ function SideBar() {
 
   return (
     <>
-      <div className="sideBar max-w-md flex p-2 flex-col lg:max-w-screen-lg">
+      <div className="sideBar  max-w-md flex p-2 flex-col lg:max-w-screen-lg">
         {/* nav and home buttons */}
         <Link href={"/home"}>
         <Button variant={"ghost"} size={"left"} className="mb-2 w-full">

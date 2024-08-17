@@ -26,6 +26,7 @@ interface boardType {
 export default function BoardList() {
   // let boardsList: boardType[] = [];
   const [boardsList, setBoardsList] = useState<boardType[]>([]);
+  
 
   const { orgId }: { orgId: string } = useParams();
 
@@ -52,7 +53,7 @@ export default function BoardList() {
             {boardsList.map((board) => {
               // console.log(board);
               return (
-                <>
+                
                 
                   <Link key={board.id} href={`/board/${board.id}`}>
                     <div
@@ -77,14 +78,15 @@ export default function BoardList() {
                     </div>
                   </Link>
                   
-                </>
+                
               );
             })}
           </div>
           
           
           </div>
-          <NewBoardDialog>
+          {boardsList.length < 5 ? (
+            <NewBoardDialog >
             <hr className="border-1 w-full m-auto border-slate-300" />
 
             <div
@@ -94,7 +96,7 @@ export default function BoardList() {
               <p className="text-slate-700 font-medium text-sm">
                 Create new board
               </p>
-              <p className="text-slate-600 font-normal text-xs">5 remaining</p>
+              <p className="text-slate-600 font-normal text-xs">{`${5 - boardsList.length} remaining`}</p>
             </div>
 
             <div className="flex flex-col mb-5">
@@ -110,6 +112,9 @@ export default function BoardList() {
               </p>
             </div>
           </NewBoardDialog>
+
+          ):(<></>)}
+          
         
       </div>
     </>
