@@ -3,6 +3,7 @@ import { useOrganization } from "@clerk/nextjs";
 import { CreditCard, LayoutDashboard } from "lucide-react";
 import Image from "next/image";
 import BoardList from "./_components/boardList";
+import BillingDialog from "./_components/billingDialog";
 
 
 
@@ -29,10 +30,15 @@ export default function BoardPage() {
         <div className="orgContent space-y-1">
 
         <p className="text-rose-600 font-semibold text-sm">{organization?.name}</p>
-        <div className="flex space-x-2">
+        <div className="flex space-x-2 items-center">
 
         <CreditCard className="text-slate-500  h-4 w-4 object-cover" />
         <p className="text-xs font-medium">Free</p>
+        <BillingDialog>
+        <div className="rounded-md">
+          <p className="text-xs font-medium text-slate-100 p-1 rounded-md bg-rose-500 hover:bg-roser-600">Upgrade</p>
+        </div>
+        </BillingDialog>
         </div>
         </div>
       </div>
