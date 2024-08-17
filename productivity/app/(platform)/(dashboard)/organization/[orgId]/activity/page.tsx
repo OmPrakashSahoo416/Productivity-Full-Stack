@@ -4,7 +4,7 @@ import { FetchActivity } from "@/actions/fetch-activity"
 import { db } from "@/lib/db"
 import { ActivityLog } from "@prisma/client"
 import { useParams } from "next/navigation"
-import { useEffect, useState } from "react"
+import { Suspense, useEffect, useState } from "react"
 
 
 
@@ -36,10 +36,12 @@ import { useEffect, useState } from "react"
     <div className="header text-sm font-bold text-slate-700 mb-5">Activity</div>
     <div className="listofActivities flex flex-col h-[500px] overflow-auto space-y-3">
       {
+        (activities.length) == 0 ? (<p className="text-sm font-medium text-slate-600">No activities found in this organization.</p>):(
         
         activities.map((activity : ActivityLog, index) => {
 
           return (
+            
             <div key={activity.id} className={"activity rounded-md space-x-3  w-full flex items-center p-2 bg-green-100" 
               + 
               (activity.ActivityType.toLowerCase() == "create" ? "  bg-green-100 " : "  ") + 
@@ -57,20 +59,22 @@ import { useEffect, useState } from "react"
 
                 </div>
                 <div className="updatedtime text-xs text-slate-500">
-                  {`${activity.createdAt.toString().slice(3,7)} ${activity.createdAt.getDate()}, ${activity.createdAt.getFullYear()}, ${activity.createdAt.getHours()}:${activity.createdAt.getMinutes()}`}
+                  {`${activity.createdAt.toString().slice(3,7)} ${activity.createdAt.getDate()}, ${activity.createdAt.getFullYear()}, ${activity.createdAt.getHours()%12}:${activity.createdAt.getMinutes()%60} ${activity.createdAt.getHours() >= 12 ? 'PM':'AM'}`}
 
                 </div>
 
               </div>
                            
             </div>
+            
           )
-        })
+        }))
       }
       </div>
     </>
   )
 
 }
+
 
 export default ActivityPage

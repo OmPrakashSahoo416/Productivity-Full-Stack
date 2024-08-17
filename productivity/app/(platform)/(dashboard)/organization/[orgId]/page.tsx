@@ -3,7 +3,7 @@ import { useOrganization } from "@clerk/nextjs";
 import { CreditCard, LayoutDashboard } from "lucide-react";
 import Image from "next/image";
 import BoardList from "./_components/boardList";
-import { Suspense } from "react";
+
 
 
 
@@ -46,7 +46,7 @@ export default function BoardPage() {
         </div>
 
         {/* board list component here  */}
-        <Suspense fallback={<BoardList.Skeleton />}><BoardList></BoardList></Suspense>
+        <BoardList></BoardList>
 
       </div>
       

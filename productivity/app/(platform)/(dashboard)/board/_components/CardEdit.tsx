@@ -38,9 +38,9 @@ export default function CardEdit({cardId, list, children}:{cardId:string, list :
 
     <Input onBlur={() => newCardTitleSetting(card?.id as string,newCardTitle as string)} value={newCardTitle}  placeholder="Enter card title" onChange={(e) => setNewCardTitle(e.target.value)} className="cardTitle bg-transparent rounded-t-md  focus-visible:border-0 focus-visible:ring-0 placeholder:text-slate-500 focus-visible:ring-offset-0 border-none outline-none cardTitle text-sm p-1  rounded-b-none text-slate-700  font-semibold w-full" ></Input>
 
-    <Button onClick={() => CreateCardCopy({newtitle:card?.title as string, newdesc:card?.description as string, newlistId:card?.listId as string, newboardId:list.boardId as string})} variant={"ghost"} className="rounded-md border border-slate-500  hover:text-slate-100 hover:bg-slate-400 p-1 mr-1 text-xs  h-auto w-auto" ><Copy size={12}></Copy></Button>
+    <Button onClick={() => CreateCardCopy({newtitle:card?.title as string, newdesc:card?.description as string, newlistId:card?.listId as string, newboardId:list.boardId as string})} variant={"ghost"} className="rounded-md   hover:text-slate-100 hover:bg-slate-400 p-1 mr-1 text-xs  h-auto w-auto" ><Copy size={12}></Copy></Button>
 
-    <Button onClick={() => DeleteCard(card?.id as string, list?.boardId as string)}    variant={"ghost"} className="rounded-md border border-slate-500  hover:text-slate-100 hover:bg-rose-500 p-1 mr-1 text-xs  h-auto w-auto" ><X size={12}></X></Button>
+    <Button onClick={() => DeleteCard(card?.id as string, list?.boardId as string)}    variant={"ghost"} className="rounded-md   hover:text-slate-100 hover:bg-rose-500 p-1 mr-1 text-xs  h-auto w-auto" ><X size={12}></X></Button>
 
     
     

@@ -1,7 +1,7 @@
 "use client"
 import { ReactNode, useState } from "react"
 import SideBar from "../_components/SideBar"
-import { ArrowRight } from "lucide-react"
+import { PanelLeftOpen, PanelRightOpen } from "lucide-react"
 
 
 
@@ -12,7 +12,8 @@ function OrganizationLayout ({children}: {children:ReactNode}) {
 
   return (
   <>
-  <div role="button" onClick={() =>setMobileSidebar(!mobileSidebar)} className="absolute peer z-[200] w-10 h-6  bg-slate-200 text-rose-600   flex md:hidden justify-end left-0 rounded-r-full"> <ArrowRight className="h-6 w-6" /> </div>
+  <div role="button" onClick={() =>setMobileSidebar(!mobileSidebar)} className="absolute peer z-[200] w-10 h-10  bg-slate-200 text-rose-600 p-2  flex md:hidden items-center left-0 rounded-r-full">{mobileSidebar?
+  <PanelRightOpen className="h-6 w-6" />:<PanelLeftOpen className="h-6 w-6" />}  </div>
   {mobileSidebar && (
     <div className={`sideBar absolute z-[100]   pt-10 rounded-r-md bg-slate-200 h-full w-60 `}>
       <SideBar></SideBar>

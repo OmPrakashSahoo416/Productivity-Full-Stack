@@ -8,10 +8,10 @@ import { CircleHelp } from "lucide-react";
 import NewBoardDialog from "./newBoardDialog";
 import { db } from "@/lib/db";
 import { FetchDb } from "@/actions/fetch-board";
-import { useEffect, useState } from "react";
+import {useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Skeleton } from "@/components/ui/skeleton";
+// import { Skeleton } from "@/components/ui/skeleton";
 import { useParams } from "next/navigation";
 
 // import { redirect } from "next/navigation";
@@ -47,11 +47,13 @@ export default function BoardList() {
     <>
       <div className="boardList w-full">
         <div className="newBoard flex flex-wrap">
+        
           <div className="flex flex-wrap  md:justify-start justify-center items-center">
             {boardsList.map((board) => {
               // console.log(board);
               return (
                 <>
+                
                   <Link key={board.id} href={`/board/${board.id}`}>
                     <div
                       id={board.id}
@@ -74,10 +76,13 @@ export default function BoardList() {
                       </div>
                     </div>
                   </Link>
+                  
                 </>
               );
             })}
           </div>
+          
+          
           </div>
           <NewBoardDialog>
             <hr className="border-1 w-full m-auto border-slate-300" />
@@ -111,17 +116,3 @@ export default function BoardList() {
   );
 }
 
-BoardList.Skeleton = function BoardListSkeleton() {
-  return (
-    <>
-      <div className="flex flex-wrap md:justify-start justify-center items-center">
-        <Skeleton className=" mr-5 mb-5 w-[200px] h-[100px] bg-rose-50 rounded-sm" />
-        <Skeleton className=" mr-5 mb-5 w-[200px] h-[100px] bg-rose-50 rounded-sm" />
-        <Skeleton className=" mr-5 mb-5 w-[200px] h-[100px] bg-rose-50 rounded-sm" />
-        <Skeleton className=" mr-5 mb-5 w-[200px] h-[100px] bg-rose-50 rounded-sm" />
-        <Skeleton className=" mr-5 mb-5 w-[200px] h-[100px] bg-rose-50 rounded-sm" />
-        <Skeleton className=" mr-5 mb-5 w-[200px] h-[100px] bg-rose-50 rounded-sm" />
-      </div>
-    </>
-  );
-};
