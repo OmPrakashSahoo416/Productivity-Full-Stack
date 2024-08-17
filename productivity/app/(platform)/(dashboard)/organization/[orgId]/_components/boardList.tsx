@@ -58,13 +58,13 @@ export default function BoardList() {
                   <Link key={board.id} href={`/board/${board.id}`}>
                     <div
                       id={board.id}
-                      className="newBoardBox  hover:drop-shadow-xl group flex relative flex-col mr-5 mb-5 items-center justify-center w-[200px] h-[100px]  rounded-sm"
+                      className="newBoardBox shadow-inner hover:drop-shadow-xl group flex relative flex-col mr-5 mb-5 items-center justify-center w-[200px] h-[100px]  rounded-sm"
                       
                     >
                       
 
                       <Image
-                        className=" bg-center shadow-inner shadow-slate-800  bg-cover bg-rose-100 rounded-sm drop-shadow-lg "
+                        className=" bg-center  shadow-slate-800  bg-cover bg-rose-100 rounded-sm drop-shadow-lg "
                         fill
                         src={board.imageUrl}
                         alt={board.title!}
@@ -85,7 +85,7 @@ export default function BoardList() {
           
           
           </div>
-          {boardsList.length < 5 ? (
+          
             <NewBoardDialog >
             <hr className="border-1 w-full m-auto border-slate-300" />
 
@@ -113,7 +113,7 @@ export default function BoardList() {
             </div>
           </NewBoardDialog>
 
-          ):(<></>)}
+          
           
         
       </div>
