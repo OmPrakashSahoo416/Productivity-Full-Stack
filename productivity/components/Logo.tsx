@@ -15,11 +15,11 @@ function Logo() {
   return (
     <>
     <Link href={"/"}>
-    <div className="logo hover:opacity-60 transition justify-start md:items-center md:flex space-x-2 hidden">
+    <div className="logo hover:opacity-60 transition justify-start md:items-center md:flex space-x-2 ">
       
-      <Image className="rounded-sm" src="/logo.png" alt="logo" width={20} height={20}>
+      <Image className="rounded-sm h-6 w-6" src="/logo.png" alt="logo" width={20} height={20}>
       </Image>
-      <div className={cn("logoText text-neutral-900 font-medium", textFont.className )}>
+      <div className={cn("logoText hidden md:flex text-neutral-900 font-medium", textFont.className )}>
         Trello
       </div>
     </div>

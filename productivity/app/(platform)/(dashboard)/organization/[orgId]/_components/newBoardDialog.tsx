@@ -94,7 +94,7 @@ export default function NewBoardDialog({
               </div>
             
               
-              {boardBg && <Image className="hover:drop-shadow-lg rounded-sm object-cover bg-slate-500" fill src={boardBg}  alt={boardBg} ></Image>}
+              {<Image className="hover:drop-shadow-lg rounded-sm object-cover bg-slate-500" fill src={boardBg?boardBg:"https://images.unsplash.com/photo-1617957772039-694195b83a35?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"}  alt={boardBg} ></Image>}
             
 
             </div>
@@ -128,7 +128,7 @@ export default function NewBoardDialog({
                 Board Title
               </label>
               <Input name="title" required={true}  id="title" />
-              <Input type="hidden" value={boardBg} name="imageUrl" id="imageUrl" />
+              <Input type="hidden" value={boardBg?boardBg:"https://images.unsplash.com/photo-1617957772039-694195b83a35?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"} name="imageUrl" id="imageUrl" />
               <Input type="hidden" value={orgId || orgId2} name="org_id" id="org_id" />
             </div>
             
