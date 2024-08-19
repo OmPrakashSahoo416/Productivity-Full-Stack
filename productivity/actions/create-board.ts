@@ -21,7 +21,7 @@ export async function CreateBoard(formData:FormData) {
 
   const data = await db.orgLimit.findUnique({where:{orgId:org_id}})
 
-  if(data?.boardCount == 5) {
+  if(data?.boardCount == data?.maxCount) {
     console.error("Maximum board limit reached")
     return
   }

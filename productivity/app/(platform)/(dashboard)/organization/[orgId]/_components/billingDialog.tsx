@@ -20,8 +20,16 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useAuth } from "@clerk/nextjs";
 import { db } from "@/lib/db";
-import { SetLimit } from "@/actions/board-limit";
+import { SetLimit, SetPremium } from "@/actions/board-limit";
 import { Gem } from "lucide-react";
+import { OrgLimit } from "@prisma/client";
+
+async function SetPremiumMembershipOrganization(orgId:string) {
+
+  const data = SetPremium({b:true, orgId:orgId})
+  return data
+
+}
 
 export default function BillingDialog({
   children
@@ -31,6 +39,25 @@ export default function BillingDialog({
   
   // to fetch the organization id we are using use Params from next js 
   const {orgId} : {orgId : string} = useParams();
+
+  const [orgBillingDetails, setOrgBillingDetails] = useState<OrgLimit>()
+
+
+  async function fetch() {
+    try {
+      
+      // to fetch the organization billing details ==> if not taken premium this would be null
+      const orgBilling = await SetPremium({b:false, orgId:orgId})
+
+      setOrgBillingDetails(orgBilling as OrgLimit)
+    } catch (err) {
+      console.log("Could not fetch database");
+    }
+  }
+  useEffect(() => {
+    fetch();
+  }, []);
+
   
 
   
@@ -61,7 +88,7 @@ export default function BillingDialog({
                 </div>
               </ol>
               {/* TODO:add functionality to this for ensuring membership */}
-              <button className="text-sm font-semibold  bg-slate-100 p-3 text-rose-600 rounded-md">Get premium for free</button>
+              <button onClick={() => SetPremiumMembershipOrganization(orgId)} className="text-sm font-semibold  bg-slate-100 p-3 text-rose-600 rounded-md">Get premium for free</button>
 
               </div>
               

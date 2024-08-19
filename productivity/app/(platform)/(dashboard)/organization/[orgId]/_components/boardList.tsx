@@ -13,6 +13,8 @@ import Image from "next/image";
 import Link from "next/link";
 // import { Skeleton } from "@/components/ui/skeleton";
 import { useParams } from "next/navigation";
+import { OrgLimit } from "@prisma/client";
+import { SetPremium } from "@/actions/board-limit";
 
 // import { redirect } from "next/navigation";
 
@@ -26,6 +28,7 @@ interface boardType {
 export default function BoardList() {
   // let boardsList: boardType[] = [];
   const [boardsList, setBoardsList] = useState<boardType[]>([]);
+  const [orgBillingDetails, setOrgBillingDetails] = useState<OrgLimit>()
   
 
   const { orgId }: { orgId: string } = useParams();
@@ -35,7 +38,11 @@ export default function BoardList() {
       // to get some data from the database but this is a client side file so doing all this
       const boards = await FetchDb(orgId);
 
+      // to fetch the organization billing details ==> if not taken premium this would be null
+      const orgBilling = await SetPremium({b:false, orgId:orgId})
+
       setBoardsList(boards);
+      setOrgBillingDetails(orgBilling as OrgLimit)
     } catch (err) {
       console.log("Could not fetch database");
     }
@@ -96,7 +103,7 @@ export default function BoardList() {
               <p className="text-slate-700 font-medium text-sm">
                 Create new board
               </p>
-              <p className="text-slate-600 font-normal text-xs">{`${5 - boardsList.length} remaining`}</p>
+              <p className="text-slate-600 font-normal text-xs">{`${(orgBillingDetails?.maxCount as number | 5) - boardsList.length} remaining`}</p>
             </div>
 
             <div className="flex flex-col mb-5">
@@ -108,7 +115,7 @@ export default function BoardList() {
               <p className="text-xs bg-slate-100 w-[200px]  text-slate-700 peer-hover:visible invisible p-2 rounded-md font-light">
                 Free workspaces can have up to 5 open boards.
                 <br />
-                For unlimited boards upgrade this workspace.
+                Get upto 100 boards by upgrading to premium.
               </p>
             </div>
           </NewBoardDialog>

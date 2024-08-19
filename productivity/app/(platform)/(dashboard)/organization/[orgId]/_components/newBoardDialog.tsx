@@ -20,7 +20,8 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useAuth } from "@clerk/nextjs";
 import { db } from "@/lib/db";
-import { SetLimit } from "@/actions/board-limit";
+import { SetLimit, SetPremium } from "@/actions/board-limit";
+import { OrgLimit } from "@prisma/client";
 
 export default function NewBoardDialog({
   children
@@ -37,6 +38,7 @@ export default function NewBoardDialog({
   const [boardBg, setBoardBg] = useState<string>(""); // selected background for board
   const [imageAuthor, setImageAuthor] = useState<Array<string>>([]); // links to images creater
   const [count,setCount] = useState(0)
+  const [orgBillingDetails, setOrgBillingDetails] = useState<OrgLimit>()
   
 
   // console.log(count)
@@ -47,6 +49,10 @@ export default function NewBoardDialog({
       const bg_authors_temp:string[] = []
       const responseImages = await GetImages();
       const data = await SetLimit({update:0})
+      const orgBilling = await SetPremium({b:false})
+
+      setOrgBillingDetails(orgBilling as OrgLimit)
+
 
       if(data) {
         setCount(data.boardCount)
@@ -153,7 +159,7 @@ export default function NewBoardDialog({
                 <Button
                 type="submit"
                   onClick={() => {
-                    if(count < 5) {
+                    if(count < orgBillingDetails!.maxCount ) {
 
                       toast({
                         title: "Board created successfully",

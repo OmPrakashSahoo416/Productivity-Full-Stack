@@ -101,4 +101,5 @@ model OrgLimit {
   id String @id @default(uuid())
   orgId String @unique
   boardCount Int
+  maxCount Int
 }
