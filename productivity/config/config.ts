@@ -1,6 +1,6 @@
 
 
 export const ConfigObject = {
-  name:"Trello",
+  name:"TaskWeave",
   description:"Manage your organization with ease"
 };
