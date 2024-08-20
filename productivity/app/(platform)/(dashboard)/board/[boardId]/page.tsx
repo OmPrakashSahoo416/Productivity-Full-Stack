@@ -54,7 +54,7 @@ export default async function BoardPage({
         </div>
     </SignedIn>
     <SignedOut>
-      <RedirectToSignIn redirectUrl={'/sign-in'}></RedirectToSignIn>
+      <RedirectToSignIn signInFallbackRedirectUrl={'/sign-in'}></RedirectToSignIn>
     </SignedOut>
     </> 
   )

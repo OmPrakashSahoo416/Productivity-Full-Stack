@@ -4,7 +4,8 @@ import { NextResponse } from "next/server";
 
 
 // TODO:change this after deployment 
-const landingUrl:string = "http://localhost:3000/"
+const landingUrl:string = process.env.NEXT_LANDING_URL as string
+console.log(landingUrl)
 
 export default clerkMiddleware((auth,req) => {
   // console.log(req.url);

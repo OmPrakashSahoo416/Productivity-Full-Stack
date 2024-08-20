@@ -2,6 +2,7 @@
 import { FetchActivity } from "@/actions/fetch-activity"
 // import { fetchTitleGeneric } from "@/actions/fetch-title-generic"
 import { db } from "@/lib/db"
+import { RedirectToSignIn, SignedIn, SignedOut } from "@clerk/nextjs"
 import { ActivityLog } from "@prisma/client"
 import { useParams } from "next/navigation"
 import { Suspense, useEffect, useState } from "react"
@@ -33,8 +34,9 @@ import { Suspense, useEffect, useState } from "react"
 
   return (
     <>
-    <div className="header text-sm font-bold text-slate-700 mb-5">Activity</div>
-    <div className="listofActivities flex flex-col h-[500px] overflow-auto space-y-3">
+    <SignedIn>
+    <div className="header text-sm font-bold  text-slate-700 mb-5">Activity</div>
+    <div className="listofActivities flex flex-col h-[500px]  overflow-auto space-y-3">
       {
         (activities.length) == 0 ? (<p className="text-sm font-medium text-slate-600">No activities found in this organization.</p>):(
         
@@ -71,6 +73,11 @@ import { Suspense, useEffect, useState } from "react"
         }))
       }
       </div>
+      </SignedIn>
+
+    <SignedOut>
+      <RedirectToSignIn signInFallbackRedirectUrl={'/sign-in'}></RedirectToSignIn>
+    </SignedOut>
     </>
   )
 

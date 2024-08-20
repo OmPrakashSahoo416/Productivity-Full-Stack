@@ -1,5 +1,5 @@
 "use client"
-import { useOrganization } from "@clerk/nextjs";
+import { RedirectToSignIn, SignedIn, SignedOut, useOrganization } from "@clerk/nextjs";
 import { CreditCard, Gem, LayoutDashboard } from "lucide-react";
 import Image from "next/image";
 import BoardList from "./_components/boardList";
@@ -10,14 +10,17 @@ import { useEffect, useState } from "react";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/dist/server/api-utils";
 import { useParams } from "next/navigation";
+import { auth, Organization } from "@clerk/nextjs/server";
 
 
 
 export default function BoardPage() {
-
+  
   const {organization, isLoaded} = useOrganization()
   const { orgId }: { orgId: string } = useParams();
   const [orgBillingDetails, setOrgBillingDetails] = useState<OrgLimit>()
+
+  
 
   async function fetch() {
     try {
@@ -41,6 +44,7 @@ export default function BoardPage() {
 
   return (
     <>
+    <SignedIn>
     
     <div className="boardPage w-full mt-2">
 
@@ -63,7 +67,7 @@ export default function BoardPage() {
           </div>
         
       </BillingDialog> </>: 
-        <><Gem className="text-slate-500  h-4 w-4 object-cover" />
+        <><Gem className="text-yellow-500  h-4 w-4 object-cover" />
         <p className="text-xs font-medium">Premium</p></>}
         
         
@@ -85,6 +89,11 @@ export default function BoardPage() {
       </div>
       
     </div>
+    </SignedIn>
+
+    <SignedOut>
+      <RedirectToSignIn signInFallbackRedirectUrl={'/sign-in'}></RedirectToSignIn>
+    </SignedOut>
     </>
   )
 }

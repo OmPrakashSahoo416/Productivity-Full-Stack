@@ -37,7 +37,7 @@ export default function NewBoardDialog({
   const [images, setImages] = useState<Array<string>>([]);
   const [boardBg, setBoardBg] = useState<string>(""); // selected background for board
   const [imageAuthor, setImageAuthor] = useState<Array<string>>([]); // links to images creater
-  const [count,setCount] = useState(0)
+  const [count,setCount] = useState<number>(0)
   const [orgBillingDetails, setOrgBillingDetails] = useState<OrgLimit>()
   
 
@@ -49,7 +49,7 @@ export default function NewBoardDialog({
       const bg_authors_temp:string[] = []
       const responseImages = await GetImages();
       const data = await SetLimit({update:0})
-      const orgBilling = await SetPremium({b:false})
+      const orgBilling = await SetPremium({b:false, orgId:orgId})
 
       setOrgBillingDetails(orgBilling as OrgLimit)
 
@@ -159,7 +159,7 @@ export default function NewBoardDialog({
                 <Button
                 type="submit"
                   onClick={() => {
-                    if(count < orgBillingDetails!.maxCount ) {
+                    if(count< (orgBillingDetails!.maxCount | 5) ) {
 
                       toast({
                         title: "Board created successfully",
