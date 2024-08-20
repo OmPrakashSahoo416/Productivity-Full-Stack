@@ -76,7 +76,7 @@ import { Suspense, useEffect, useState } from "react"
       </SignedIn>
 
     <SignedOut>
-      <RedirectToSignIn signInFallbackRedirectUrl={'/sign-in'}></RedirectToSignIn>
+      <RedirectToSignIn signInFallbackRedirectUrl={'/select-org'}></RedirectToSignIn>
     </SignedOut>
     </>
   )

@@ -92,7 +92,7 @@ export default function BoardPage() {
     </SignedIn>
 
     <SignedOut>
-      <RedirectToSignIn signInFallbackRedirectUrl={'/sign-in'}></RedirectToSignIn>
+      <RedirectToSignIn signInFallbackRedirectUrl={'/select-org'}></RedirectToSignIn>
     </SignedOut>
     </>
   )
