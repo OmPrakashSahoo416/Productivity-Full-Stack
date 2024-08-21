@@ -1,12 +1,12 @@
-##TaskWeave
+**TaskWeave**
 
 TaskWeave is a powerful and flexible organization management application designed to streamline productivity with a focus on simplicity and customization. Built using modern web technologies, TaskWeave offers a rich set of features, including board management, drag-and-drop lists, and robust authentication, all fully deployed and accessible online.
 
-🌐 ##Live Demo
+**🌐 Live Demo**
 
 Check out the live app here: [https://productivity-full-stack.vercel.app/]
 
-🚀 ##Features
+**🚀 Features**
 
 1. Authentication
 Clerk Integration: Secure authentication using Clerk.
@@ -27,7 +27,7 @@ Settings: Fine-tune your organization’s settings for a tailored experience.
 6. Membership Features
 Enhanced Customization: Provide members with personalized experiences and permissions based on their roles.
 
-🛠️ ##Tech Stack
+**🛠️ Tech Stack**
 
 Frontend: React.js, Next.js
 Authentication: Clerk
