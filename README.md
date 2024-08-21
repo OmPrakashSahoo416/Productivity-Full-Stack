@@ -30,7 +30,11 @@ Enhanced Customization: Provide members with personalized experiences and permis
 **🛠️ Tech Stack**
 
 Frontend: React.js, Next.js
+
 Authentication: Clerk
+
 Database: Vercel PostgreSQL
+
 API Integration: Unsplash API for dynamic background images
+
 Deployment: Vercel
