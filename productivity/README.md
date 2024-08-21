@@ -1,36 +1,32 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+##TaskWeave
+TaskWeave is a powerful and flexible organization management application designed to streamline productivity with a focus on simplicity and customization. Built using modern web technologies, TaskWeave offers a rich set of features, including board management, drag-and-drop lists, and robust authentication, all fully deployed and accessible online.
 
-## Getting Started
+🌐 ##Live Demo
+Check out the live app here: [https://productivity-full-stack.vercel.app/]
 
-First, run the development server:
+🚀 ##Features
+1. Authentication
+Clerk Integration: Secure authentication using Clerk.
+Email and Google Sign-In: Seamless sign-up and login options via email and Google.
+2. Organization Management
+Create and Manage Organizations: Easily set up and manage multiple organizations.
+Member Management: Invite and manage organization members for collaborative project management.
+3. Board Customization
+Create Boards: Set up custom boards to organize tasks and projects.
+Background Images: Select beautiful board backgrounds from the Unsplash API.
+Editable Texts: Customize board titles, descriptions, and other text elements.
+4. Task and List Management
+Create Lists and Cards: Organize tasks using lists and cards within each board.
+Drag and Drop Reordering: Reorder lists and cards effortlessly with drag-and-drop functionality.
+5. Organization Activity and Settings
+Activity Management: Track and manage activities within your organization.
+Settings: Fine-tune your organization’s settings for a tailored experience.
+6. Membership Features
+Enhanced Customization: Provide members with personalized experiences and permissions based on their roles.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+🛠️ ##Tech Stack
+Frontend: React.js, Next.js
+Authentication: Clerk
+Database: Vercel PostgreSQL
+API Integration: Unsplash API for dynamic background images
+Deployment: Vercel
