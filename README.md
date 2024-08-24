@@ -1,6 +1,6 @@
 **TaskWeave**
 
-TaskWeave is a powerful and flexible organization management application designed to streamline productivity with a focus on simplicity and customization. Built using modern web technologies, TaskWeave offers a rich set of features, including board management, drag-and-drop lists, and robust authentication, all fully deployed and accessible online.
+TaskWeave is a powerful and flexible organization management application designed to streamline productivity with a focus on simplicity and customization. Built using modern web technologies, TaskWeave offers a rich set of features, including board management, drag-and-drop lists, organization management and robust authentication, all fully deployed and accessible online.
 
 **🌐 Live Demo**
 
