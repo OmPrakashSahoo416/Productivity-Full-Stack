@@ -23,7 +23,7 @@ Create Lists and Cards: Organize tasks using lists and cards within each board.
 Drag and Drop Reordering: Reorder lists and cards effortlessly with drag-and-drop functionality.
 5. Organization Activity and Settings
 Activity Management: Track and manage activities within your organization.
-Settings: Fine-tune your organization’s settings for a tailored experience.
+Settings: Fine-tune your organization’s settings for a tailored experience adding, updating and inviting members and exploring premium for more features unlocked for you.
 6. Membership Features
 Enhanced Customization: Provide members with personalized experiences and permissions based on their roles.
 
